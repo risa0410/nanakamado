@@ -1,0 +1,4 @@
+DB_USERNAME="root"
+DB_PASSWORD="risarisa7472"
+DB_HOST="rds-mysql-server.csysbi0jvqf3.ap-northeast-1.rds.amazonaws.com"
+DB_DATABASE="nanakamado"
