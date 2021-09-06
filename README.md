@@ -13,32 +13,13 @@
 北欧雑貨を生活に取り入れ、尚且つおうち時間を楽しむ方法を共有することができれば、
 多くの方の生活を豊かにするきっかけになるのではないかと考え、こちらのテーマにしました。
 
-<<<<<<<<< saved version
-
-=========
 ### ターゲットユーザ
 - 北欧好きな方
 - 雑貨のコーディネートを見るのが好きな方
 - おうち時間を心地よく過ごしたい方
 - 北欧雑貨や暮らしを発信したい方
->>>>>>>>> local version
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-<<<<<<<<< saved version
-
-=========
 ## 使用素材
 - 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
 - 使用しない場合は、使用素材の項目をREADMEから削除してください。
->>>>>>>>> local version
+
