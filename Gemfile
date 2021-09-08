@@ -54,6 +54,8 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end
@@ -64,8 +66,6 @@ gem 'devise'
 gem 'image_processing', '~> 1.2'
 gem 'font-awesome-sass', '~> 5.13'
 gem 'kaminari'
-gem 'pry-byebug'
-gem 'pry-rails'
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 
