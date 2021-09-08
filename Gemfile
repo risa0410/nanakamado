@@ -62,6 +62,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'image_processing', '~> 1.2'
+gem 'font-awesome-sass', '~> 5.13'
+gem 'kaminari'
+gem 'pry-byebug'
+gem 'pry-rails'
+gem 'bootstrap', '~> 4.5'
+gem 'jquery-rails'
 
 gem 'dotenv-rails'
 group :production do
