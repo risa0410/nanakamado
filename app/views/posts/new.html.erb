@@ -9,7 +9,7 @@
           <table>
             <tr>
               <% if @user.profile_image.attached? %>
-                <%= image_tag @user.image.variant(resize:'200x200') %>
+                <%= image_tag @user.profile_image.variant(resize:'200x200') %>
               <% else %>
                 <%= image_tag('no_image.jpg' , size: '200x180') %>
               <% end %>
@@ -34,14 +34,14 @@
           <%= form_with model: @post, local:true do |f| %>
             <div class="form-group">
               <label for="book_title">Image</label></br>
-              <%= f.file_field :image %>
+              <%= f.file_field :post_image %>
             </div>
             <div class="form-group">
               <label for="book_title">Title</label></br>
               <%= f.text_field :title, class:"form-control book_title" %>
             </div>
             <div class="form-group">
-              <label for="book_opinion">Opinion</label></br>
+              <label for="book_opinion">Body</label></br>
               <%= f.text_area :body, class:"form-control book_body" %>
             </div>
             <div class="form-group">
