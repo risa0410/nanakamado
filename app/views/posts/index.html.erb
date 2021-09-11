@@ -51,9 +51,9 @@
                   <p class="card-title">
                       <strong><i class="far fa-flag"></i><span> <%= post.title %></span></strong>
                   </p>
-                  <p class="card-text">説明：<%= post.body %></p>
-                  <span><i class="fas fa-user"></i> By <%= post.user.name %> ｜ </span>
-                  <!--<span><%#= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id), class:"text-dark" %></span>-->
+                  <p class="card-text"><%= post.body %></p>
+                  <span><i class="fas fa-user"></i>  <%= post.user.name %> ｜ </span>
+                  <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class:"text-dark" %></span>
                 </div>
               </div>
             </div>
