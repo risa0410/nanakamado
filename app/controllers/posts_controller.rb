@@ -17,11 +17,13 @@ class PostsController < ApplicationController
   end
 
   def index
+    @user = current_user
     @post = Post.all
   end
 
   def show
     @post = Post.find(params[:id])
+    @post_comment = PostComment.new
     @user = @post.user
     if @post.user != current_user
       redirect_to post_path

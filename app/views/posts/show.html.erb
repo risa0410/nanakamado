@@ -69,13 +69,45 @@
                   <p class="card-title">
                     <strong><i class="far fa-flag"></i><span> <%= @post.title %></span></strong>
                   </p>
-                  <p class="card-text">説明：<%= @post.body %></p>
+                  <p class="card-text"><%= @post.body %></p>
                   <span><i class="fas fa-user"></i> By <%= @user.name %> ｜ </span>
                   <span><%#= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id), class:"text-dark" %></span>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div>
+          <p>コメント件数：<%= @post.post_comments.count %></p>
+          <% @post.post_comments.each do |post_comment| %>
+            <!--<p><%#= image_tag('sample-author1.jpg') %></p>-->
+            <%= post_comment.user.name %>
+            <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+            <% if post_comment.user == current_user %>
+              <div>
+                <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+              </div>
+            <% end %>
+          <% end %>
+          <% if @post.favorited_by?(current_user) %>
+            <p>
+              <%= link_to post_favorites_path(@post), method: :delete do %>
+                ♥<%= @post.favorites.count %> いいね
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to post_favorites_path(@post), method: :post do %>
+                ♡<%= @post.favorites.count %> いいね
+              <% end %>
+            </p>
+          <% end %>
+        </div>
+        <div>
+          <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+            <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+            <%= f.submit "送信する" %>
+          <% end %>
         </div>
 
     </div>
