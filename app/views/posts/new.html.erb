@@ -1,17 +1,16 @@
-<main style="background-color: #F7F7F7;">
+<main class="bg-white shadow-sm">
   <p id="notice"></p>
   <div class='container'>
     <div class='row'>
-
 
         <div class='col-md-3' style="text-align:center;">
           <h2>User info</h2>
           <table>
             <tr>
               <% if @user.profile_image.attached? %>
-                <%= image_tag @user.profile_image.variant(resize:'200x200') %>
+                <%= image_tag @user.profile_image.variant(resize:'100x80') %>
               <% else %>
-                <%= image_tag('no_image.jpg' , size: '200x180') %>
+                <%= image_tag('no_image.jpg', size:'100x80') %>
               <% end %>
             </tr>
             <tr>
@@ -29,7 +28,7 @@
           </table>
         </div>
 
-        <div class='col-md-8 offset-md-1'>
+        <div class='col-md-9'>
         <h2>New Post</h2>
           <%= form_with model: @post, local:true do |f| %>
             <div class="form-group">

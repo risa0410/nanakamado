@@ -1,4 +1,4 @@
-<main style="background-color: #F7F7F7;">
+<main class="bg-white shadow-sm">
   <p id="notice"></p>
   <div class='container'>
     <div class='row'>
@@ -6,14 +6,14 @@
         <div class='col-md-3' style="text-align:center;">
         </div>
 
-        <div class='col-md-8 offset-md-1'>
+        <div class='col-md-9'>
         <h2>My Page</h2>
           <table>
             <tr>
               <% if @user.profile_image.attached? %>
-                <%= image_tag @user.profile_image.variant(resize:'400x360') %>
+                <%= image_tag @user.profile_image.variant(resize:'300x260') %>
               <% else %>
-                <%= image_tag('no_image.jpg' , size: '400x360') %>
+                <%= image_tag('no_image.jpg', size:'300x260') %>
               <% end %>
             </tr>
             <tr>
