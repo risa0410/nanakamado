@@ -5,7 +5,7 @@
 
         <div class='col-md-3' style="text-align:center;">
           <h2>User info</h2>
-          <table>
+          <table class="row justify-content-center">
             <tr>
               <% if @user.profile_image.attached? %>
                 <%= image_tag @user.image.variant(resize:'100x80') %>

@@ -5,7 +5,7 @@
 
         <div class='col-md-3' style="text-align:center;">
           <h2>User info</h2>
-          <table>
+          <table class="row justify-content-center">
             <tr>
               <% if @user.profile_image.attached? %>
                 <%= image_tag @user.image.variant(resize:'100x80') %>
@@ -28,9 +28,9 @@
           </table>
         </div>
 
-        <div class="card-deck-containar col-md-9">
+        <div class="card-deck-container col-md-9">
           <h2>Detail</h2>
-          <div class="card col-11 mx-3 embed-responsive shadow-sm">
+          <div class="card col-11 mx-1 embed-responsive shadow-sm">
               <% if @post.post_image.attached? %>
                 <%= image_tag @post.post_image, class:"card-img-top"; %>
               <% else %>
@@ -69,46 +69,35 @@
             </div>
           </div>
 
-
-
           <% @post.post_comments.each do |post_comment| %>
-             <div class="card col-11 mx-3 mt-3 embed-responsive shadow-sm">
-               <div class="card-body">
-                 <div class="row">
-                   <div class="col-2" style="text-align:center;">
-
-                       <% if post_comment.user.profile_image.attached? %>
-                        <%= image_tag post_comment.user.profile_image.variant(resize:'50x40') %>
-                       <% else %>
-                        <%= image_tag('no_image.jpg', size:'50x40') %>
-                       <% end %>
-                       <%= post_comment.user.name %>
-                   </div>
-                       <span><%= post_comment.created_at.strftime('%Y/%m/%d') %></span></br>
-                       <span><%= post_comment.comment %></span>
-                       <% if post_comment.user == current_user %>
-                         <div>
-                           <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-                         </div>
-                       <% end %>
-
-                   </div>
-                 </div>
-               </div>
-          <% end %>
-                    <div> 
-                      <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-                        <%= f.text_area :comment, rows:'5', placeholder: "コメントをここに", class:"form-control card col-8 mx-3 mt-3 shadow-sm" %>
-                        <%= f.submit "送信する" %>
-                      <% end %>
-                    </div>
-
+            <div class="card col-11 mx-1 mt-3 embed-responsive shadow-sm">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-2" style="text-align:center;">
+                    <% if post_comment.user.profile_image.attached? %>
+                     <%= image_tag post_comment.user.profile_image.variant(resize:'50x40') %>
+                    <% else %>
+                     <%= image_tag('no_image.jpg', size:'50x40') %>
+                    <% end %>
+                    <%= post_comment.user.name %>
+                  </div>
+                    <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+                    <%= post_comment.comment %>
+                    <% if post_comment.user == current_user %>
+                        <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+                    <% end %>
+                </div>
+              </div>
             </div>
-           </div>
+          <% end %>
+          <div>
+            <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+              <%= f.text_area :comment, rows:'5', placeholder: "新しいコメント", class:"form-control card col-8 mx-1 mt-3 shadow-sm" %>
+              <%= f.submit "送信する", class:"float: right;" %>
+            <% end %>
+          </div>
+
         </div>
-
-
-
+      </div>
     </div>
-  </div>
 </main>
