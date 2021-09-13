@@ -8,7 +8,7 @@
           <table class="row justify-content-center">
             <tr>
               <% if @user.profile_image.attached? %>
-                <%= image_tag @user.image.variant(resize:'100x80') %>
+                <%= image_tag @user.proimage.variant(resize:'100x80') %>
               <% else %>
                 <%= image_tag('no_image.jpg', size:'100x80') %>
               <% end %>
