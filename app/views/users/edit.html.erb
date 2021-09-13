@@ -6,7 +6,7 @@
       <table class="mx-auto">
         <tr>
           <% if @user.profile_image.attached? %>
-            <%= image_tag @user.image.variant(resize:'100x80') %>
+            <%= image_tag @user.profile_image.variant(resize:'100x80') %>
           <% else %>
             <%= image_tag('no_image.jpg', size:'100x80') %>
           <% end %>
@@ -28,28 +28,26 @@
 
     <main2 class="bg-white col-9 shadow-sm">
       <h2>Editing Mypage</h2>
-      <form>
         <%= form_with model:@user, local:true do |f| %>
           <div class="form-group">
             <label for="user_name">Name</label></br>
             <%= f.text_field :name, autofocus: true, class:"form-control col-5 name" %>
           </div>
-    
+
           <div class="form-group">
             <label for="user_image">Image</label></br>
             <%= f.file_field :profile_image %>
           </div>
-    
+
           <div class="form-group">
             <label for="user_introduction">Introduction</label></br>
             <%= f.text_area :introduction, autofocus: true, class:"form-control col-8 introduction" %>
           </div>
-    
+
           <div class="form-group">
             <%= f.submit "Update User", class:"btn btn-secondary" %>
           </div>
         <% end %>
-      </form>
       <h2>Now</h2>
       <div class="row">
         <div class="card col-4 mx-3 mb-4 embed-responsive shadow-sm">
