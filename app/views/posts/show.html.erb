@@ -1,16 +1,16 @@
-<main style="background-color: #F7F7F7;">
+<main class="bg-white shadow-sm">
   <p id="notice"></p>
   <div class='container'>
     <div class='row'>
 
         <div class='col-md-3' style="text-align:center;">
           <h2>User info</h2>
-          <table>
+          <table class="row justify-content-center">
             <tr>
               <% if @user.profile_image.attached? %>
-                <%= image_tag @user.image.variant(resize:'200x200') %>
+                <%= image_tag @user.profile_image.variant(resize:'100x80') %>
               <% else %>
-                <%= image_tag('no_image.jpg' , size: '200x180') %>
+                <%= image_tag('no_image.jpg', size:'100x80') %>
               <% end %>
             </tr>
             <tr>
@@ -28,29 +28,9 @@
           </table>
         </div>
 
-        <!--<div class='col-md-8 offset-md-1'>-->
-        <!--  <h2>Post detail</h2>-->
-        <!--    <%#= form_with model: @post, local:true do |f| %>-->
-        <!--      <div class="form-group">-->
-        <!--        <label for="book_title">Image</label></br>-->
-        <!--        <%#= f.file_field :image %>-->
-        <!--      </div>-->
-        <!--      <div class="form-group">-->
-        <!--        <label for="book_title">Title</label></br>-->
-        <!--        <%#= f.text_field :title, class:"form-control book_title" %>-->
-        <!--      </div>-->
-        <!--      <div class="form-group">-->
-        <!--        <label for="book_opinion">Opinion</label></br>-->
-        <!--        <%#= f.text_area :body, class:"form-control book_body" %>-->
-        <!--      </div>-->
-        <!--      <div class="form-group">-->
-        <!--        <%#= f.submit 'Create Post', class:"btn btn-success" %>-->
-        <!--      </div>-->
-        <!--    <%# end %>-->
-        <!--</div>-->
-
-        <div class="card-list-containar py-5 px-5">
-          <div class="card w-50 mx-auto mt-4">
+        <div class="card-deck-container col-md-9">
+          <h2>Detail</h2>
+          <div class="card col-11 mx-1 embed-responsive shadow-sm">
               <% if @post.post_image.attached? %>
                 <%= image_tag @post.post_image, class:"card-img-top"; %>
               <% else %>
@@ -58,58 +38,81 @@
               <% end %>
             <div class="card-body">
               <div class="row">
-                <div class="col-2">
+                <div class="col-2" style="text-align:center;">
                   <% if @user.profile_image.attached? %>
-                    <%= image_tag @user.profile_image.variant(resize:'60x60'), class:"mt-3 rounded-circle"; %>
+                    <%= image_tag @user.profile_image.variant(resize:'50x40'), class:"mt-3 rounded-circle"; %>
                   <% else %>
-                    <%= image_tag('no_image.jpg' , size:'60x60') %>
+                    <%= image_tag('no_image.jpg', size:'50x40') %>
                   <% end %>
+                  <%= @user.name %>
                 </div>
+
                 <div class="col-10">
                   <p class="card-title">
                     <strong><i class="far fa-flag"></i><span> <%= @post.title %></span></strong>
                   </p>
                   <p class="card-text"><%= @post.body %></p>
-                  <span><i class="fas fa-user"></i> By <%= @user.name %> ｜ </span>
-                  <span><%#= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id), class:"text-dark" %></span>
+                  <span>
+                    <% if @post.favorited_by?(current_user) %>
+                      <%= link_to post_favorites_path(@post), method: :delete do %>
+                        ♥<%= @post.favorites.count %> いいね
+                      <% end %>
+                    <% else %>
+                      <%= link_to post_favorites_path(@post), method: :post do %>
+                        ♡<%= @post.favorites.count %> いいね
+                      <% end %>
+                    <% end %>
+                  </span>
+                  <span>　　<%= @post.post_comments.count %> 件のコメント</span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div>
-          <p>コメント件数：<%= @post.post_comments.count %></p>
+
           <% @post.post_comments.each do |post_comment| %>
-            <!--<p><%#= image_tag('sample-author1.jpg') %></p>-->
-            <%= post_comment.user.name %>
-            <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-            <% if post_comment.user == current_user %>
-              <div>
-                <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+            <div class="card col-11 mx-1 mt-3 embed-responsive shadow-sm">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-2" style="text-align:center;">
+                    <% if post_comment.user.profile_image.attached? %>
+                     <%= image_tag post_comment.user.profile_image.variant(resize:'50x40') %>
+                    <% else %>
+                     <%= image_tag('no_image.jpg', size:'50x40') %>
+                    <% end %>
+                    <%= post_comment.user.name %>
+                  </div>
+                  <div class="col-10">
+                    <%= post_comment.created_at.strftime('%Y/%m/%d') %></br>
+                    <%= post_comment.comment %>
+                   <div>
+                    <% if post_comment.user == current_user %>
+                      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+                    <% end %>
+                   </div>
+                  </div>
+                </div>
               </div>
-            <% end %>
+            </div>
           <% end %>
-          <% if @post.favorited_by?(current_user) %>
-            <p>
-              <%= link_to post_favorites_path(@post), method: :delete do %>
-                ♥<%= @post.favorites.count %> いいね
-              <% end %>
-            </p>
-            <% else %>
-            <p>
-              <%= link_to post_favorites_path(@post), method: :post do %>
-                ♡<%= @post.favorites.count %> いいね
-              <% end %>
-            </p>
-          <% end %>
-        </div>
-        <div>
+
           <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-            <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-            <%= f.submit "送信する" %>
+            <div class="row">
+              <div class="col-8 mx-1 mt-3">
+                <div class="form-group">
+                  <%= f.text_area :comment, placeholder: "新しいコメント", class: 'form-control shadow-sm' %>
+                </div>
+              </div>
+              <div class="col-2 mt-5">
+                <div class="form-group">
+                  <%= f.submit "送信する" %>
+                </div>
+              </div>
+            </div>
           <% end %>
+
         </div>
 
+      </div>
     </div>
   </div>
 </main>

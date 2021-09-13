@@ -7,14 +7,32 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  has_one_attached :profile_image
-  validate :profile_image_type
-
-  private
-  def profile_image_type
-    if !profile_image.blob.content_type.in?(%('profile_image/jpeg profile_image/png'))
-      profile_image.purge # Rails6では、この1行は必要ない
-      errors.add(:profile_image, 'はJPEGまたはPNG形式を選択してアップロードしてください')
-    end
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followings, through: :relationships, source: :followed
+  # フォローされる側から中間テーブルへのアソシエーションの記述
+  # フォローされる側からフォローしているユーザを取得する
+  # フォローする側から中間テーブルへのアソシエーションの記述
+  # フォローする側からフォローされたユーザを取得する
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
   end
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id).destroy
+  end
+  def following?(user)
+    followings.include?(user)
+  end
+
+  has_one_attached :profile_image
+  # validate :profile_image_type
+
+  # private
+  # def profile_image_type
+  #   if !profile_image.blob.content_type.in?(%('profile_image/jpeg profile_image/png'))
+  #     profile_image.purge # Rails6では、この1行は必要ない
+  #     errors.add(:profile_image, 'はJPEGまたはPNG形式を選択してアップロードしてください')
+  #   end
+  # end
 end
