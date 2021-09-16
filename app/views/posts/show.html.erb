@@ -3,30 +3,7 @@
   <div class='container'>
     <div class='row'>
 
-        <div class='col-md-3' style="text-align:center;">
-          <h2>User info</h2>
-          <table class="row justify-content-center">
-            <tr>
-              <% if @user.profile_image.attached? %>
-                <%= image_tag @user.profile_image.variant(resize:'100x80') %>
-              <% else %>
-                <%= image_tag('no_image.jpg', size:'100x80') %>
-              <% end %>
-            </tr>
-            <tr>
-        	    <th>name</th>
-        	  </tr>
-        	  <tr>
-        	    <th><%= @user.name %></th>
-            </tr>
-            <tr>
-        	    <th>introduction</th>
-        	  </tr>
-        	  <tr>
-        	    <th><%= @user.introduction %></th>
-        	  </tr>
-          </table>
-        </div>
+      <%= render 'users/userinfo', user: @user %>
 
         <div class="card-deck-container col-md-9">
           <h2>Detail</h2>
@@ -94,7 +71,6 @@
               </div>
             </div>
           <% end %>
-
           <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
             <div class="row">
               <div class="col-8 mx-1 mt-3">
@@ -109,7 +85,6 @@
               </div>
             </div>
           <% end %>
-
         </div>
 
       </div>
