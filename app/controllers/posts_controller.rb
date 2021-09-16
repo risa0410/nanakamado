@@ -25,9 +25,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
     @user = @post.user
-    if @post.user != current_user
-      redirect_to post_path
-    end
+    # if @post.user != current_user
+    #   redirect_to post_path
+    # end
   end
 
   def destroy

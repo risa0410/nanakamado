@@ -26,7 +26,8 @@
 
                 <div class="col-10">
                   <p class="card-title">
-                    <strong><i class="far fa-flag"></i><span> <%= @post.title %></span></strong>
+                    <strong><i class="far fa-flag"></i><span> <%= @post.title %>  　</span></strong>
+                    <%= @post.created_at.strftime('%Y/%m/%d') %>
                   </p>
                   <p class="card-text"><%= @post.body %></p>
                   <span>
