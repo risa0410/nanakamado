@@ -30,17 +30,11 @@
                     <%= @post.created_at.strftime('%Y/%m/%d') %>
                   </p>
                   <p class="card-text"><%= @post.body %></p>
-                  <span>
-                    <% if @post.favorited_by?(current_user) %>
-                      <%= link_to post_favorites_path(@post), method: :delete do %>
-                        ♥<%= @post.favorites.count %> いいね
-                      <% end %>
-                    <% else %>
-                      <%= link_to post_favorites_path(@post), method: :post do %>
-                        ♡<%= @post.favorites.count %> いいね
-                      <% end %>
-                    <% end %>
+
+                  <span id="favorite_<%= @post.id %>">
+                    <%= render 'favorites/favorite', post: @post %>
                   </span>
+
                   <span>　　<%= @post.post_comments.count %> 件のコメント</span>
                 </div>
               </div>
