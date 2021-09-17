@@ -5,45 +5,33 @@
 
     <%= render 'users/userinfo', user: @user %>
 
-    <div class='col-md-9'>
+    <div class='col-md-8'>
       <h2>Editing Post</h2>
-        <%= form_with model:@user, local:true do |f| %>
+      <div class="card embed-responsive shadow-sm">
+        <% if @post.post_image.attached? %>
+          <%= link_to post_path(@post.id) do %>
+            <%= image_tag @post.post_image, class:"card-img-top"; %>
+          <% end %>
+        <% else %>
+          <%= image_tag('no_image.jpg') %>
+        <% end %>
+      </div>
+        <%= form_with model:@post, local:true do |f| %>
           <div class="form-group">
-            <label for="user_name">Name</label></br>
-            <%= f.text_field :name, autofocus: true, class:"form-control col-5 name" %>
-          </div>
-
-          <div class="form-group">
-            <label for="user_image">Image</label></br>
-            <%= f.file_field :profile_image %>
+            <label for="title">Title</label></br>
+            <%= f.text_field :title, autofocus: true, class:"form-control col-5 name" %>
           </div>
 
           <div class="form-group">
             <label for="user_introduction">Introduction</label></br>
-            <%= f.text_area :introduction, autofocus: true, class:"form-control col-8 introduction" %>
+            <%= f.text_area :body, autofocus: true, class:"form-control col-8 introduction" %>
           </div>
 
           <div class="form-group">
-            <%= f.submit "Update User", class:"btn btn-secondary" %>
+            <%= f.submit "Update", class:"btn btn-secondary" %>
           </div>
         <% end %>
-      <h2>Now</h2>
-      <div class="row">
-        <div class="card col-4 mx-3 mb-4 embed-responsive shadow-sm">
-          <% if @user.profile_image.attached? %>
-            <%= image_tag @user.profile_image.variant(resize:'250x220') %>
-          <% else %>
-            <%= image_tag('no_image.jpg', size:'250x220') %>
-          <% end %>
-        </div>
-        <div class="card col-7 mb-4 shadow-sm">
-          <div class="col-12">
-            </br><p>name：　<%= @user.name %></p>
-            <p>introduction：</p>
-            <p><%= @user.introduction %></p>
-          </div>
-        </div>
-      </div>
+
     </div>
 
   </div>
