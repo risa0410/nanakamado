@@ -3,30 +3,7 @@
   <div class='container'>
     <div class='row'>
 
-        <div class='col-md-3' style="text-align:center;">
-          <h2>User info</h2>
-          <table class="row justify-content-center">
-            <tr>
-              <% if @user.profile_image.attached? %>
-                <%= image_tag @user.profile_image.variant(resize:'100x80') %>
-              <% else %>
-                <%= image_tag('no_image.jpg', size:'100x80') %>
-              <% end %>
-            </tr>
-            <tr>
-        	    <th>name</th>
-        	  </tr>
-        	  <tr>
-        	    <th><%= @user.name %></th>
-            </tr>
-            <tr>
-        	    <th>introduction</th>
-        	  </tr>
-        	  <tr>
-        	    <th><%= @user.introduction %></th>
-        	  </tr>
-          </table>
-        </div>
+        <%= render 'users/userinfo', user: @user %>
 
         <div class="card-deck-container col-md-9">
           <h2>Index</h2>
@@ -34,7 +11,9 @@
             <% @post.each do |post| %>
               <div class="card col-5 mx-3 mb-4 embed-responsive shadow-sm">
                 <% if post.post_image.attached? %>
-                  <%= image_tag post.post_image, class:"card-img-top"; %>
+                  <%= link_to post_path(post.id) do %>
+                    <%= image_tag post.post_image, class:"card-img-top"; %>
+                  <% end %>
                 <% else %>
                   <%= image_tag('no_image.jpg') %>
                 <% end %>
@@ -49,7 +28,9 @@
                     </div>
                     <div class="col-9 offset-1">
                       <p class="card-title">
+                          <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
                           <strong><i class="far fa-flag"></i><span> <%= post.title %></span></strong>
+                          
                       </p>
                       <span><i class="fas fa-user"></i>  <%= post.user.name %> ｜ </span>
                       <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class:"text-dark" %></span>
@@ -59,8 +40,8 @@
               </div>
             <% end %>
           <%#= paginate post_images %>
+          </div>
         </div>
-      </div>
 
   </div>
 </main>
