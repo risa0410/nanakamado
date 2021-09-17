@@ -1,33 +1,11 @@
+<main class="bg-white shadow-sm">
+  <p id="notice"></p>
 <div class='container'>
   <div class='row'>
 
-    <main1 class="bg-white col-3 shadow-sm" style="text-align:center;">
-      <h2>User info</h2>
-      <table class="mx-auto">
-        <tr>
-          <% if @user.profile_image.attached? %>
-            <%= image_tag @user.profile_image.variant(resize:'100x80') %>
-          <% else %>
-            <%= image_tag('no_image.jpg', size:'100x80') %>
-          <% end %>
-        </tr>
-        <tr>
-          <th></th>
-        </tr>
-        <tr>
-          <th><%= @user.name %></th>
-        </tr>
-        <tr>
-          <th>introduction</th>
-        </tr>
-        <tr>
-          <th><%= @user.introduction %></th>
-        </tr>
-      </table>
-      <%= link_to"edit", edit_user_path(current_user) %>
-    </main1>
+    <%= render 'users/userinfo', user: @user %>
 
-    <main2 class="bg-white col-9 shadow-sm">
+    <div class='col-md-9'>
       <h2>Mypage</h2>
         <div class="row">
           <div class="card col-4 mx-3 mb-4 embed-responsive shadow-sm">
@@ -42,11 +20,52 @@
               </br><p>name：　<%= @user.name %></p>
               <p>introduction：</p>
               <p><%= @user.introduction %></p>
+              <%= link_to"edit", edit_user_path %>
             </div>
           </div>
         </div>
 
-    </main2>
-
+    <div class="card-deck-container col-md-14">
+          <h2>My Posts</h2>
+          <div class="row">
+               <% @posts.each do |post| %>
+                <div class="card col-5 mx-3 mb-4 embed-responsive shadow-sm">
+                  <% if post.post_image.attached? %>
+                    <%= link_to post_path(post.id) do %>
+                      <%= image_tag post.post_image, class:"card-img-top"; %>
+                    <% end %>
+                  <% else %>
+                    <%= image_tag('no_image.jpg') %>
+                  <% end %>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-2">
+                        <% if post.user.profile_image.attached? %>
+                          <%= image_tag @user.profile_image.variant(resize:'50x40'), class:"mt-3 rounded-circle"; %>
+                        <% else %>
+                          <%= image_tag('no_image.jpg', size:'50x40') %>
+                        <% end %>
+                      </div>
+                      <div class="col-9 offset-1">
+                        <p class="card-title">
+                          <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
+                          <strong><i class="far fa-flag"></i><span> <%= post.title %></span></strong>
+                        </p>
+                        <span><i class="fas fa-user"></i>  <%= post.user.name %> ｜ </span>
+                        <span><%= post.post_comments.count %> コメント</span></br>
+                        <span><%= link_to"edit", edit_post_path(post) %>
+                        <%= link_to "destroy", post, method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            
+          <%#= paginate post_images %>
+          </div>
+        </div>
+   </div>
   </div>
 </div>
+</main>
