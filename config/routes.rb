@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get 'followers' => 'relationships#followers', as: 'followers'
   end
 
+  get 'posts/hashtag/:name' => 'posts#hashtag'
   resources :posts do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]

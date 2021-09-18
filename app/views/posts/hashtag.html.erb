@@ -1,0 +1,10 @@
+<h2>ハッシュタグ #<%= @tag.hashname %></h2>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <%= link_to post_path(post.id) do %>
+          <%= image_tag post.post_image.variant(resize:"640x640") %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
