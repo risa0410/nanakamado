@@ -25,6 +25,14 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  def favorite
+    @user = User.find(params[:user_id])
+    favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
+    @favorite_list = Post.find(favorites)
+    # ログイン中のユーザーのお気に入りのpost_idカラムを取得
+    # postsテーブルから、お気に入り登録済みのレコードを取得
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)

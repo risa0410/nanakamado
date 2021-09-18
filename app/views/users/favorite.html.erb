@@ -1,34 +1,15 @@
 <main class="bg-white shadow-sm">
   <p id="notice"></p>
-<div class='container'>
-  <div class='row'>
+  <div class='container'>
+    <div class='row'>
 
-    <%= render 'users/userinfo', user: @user %>
+        <%= render 'users/userinfo', user: current_user %>
 
-    <div class='col-md-9'>
-      <h2>Mypage</h2>
-        <div class="row">
-          <div class="card col-4 mx-3 mb-4 embed-responsive shadow-sm">
-            <% if @user.profile_image.attached? %>
-              <%= image_tag @user.profile_image.variant(resize:'250x220') %>
-            <% else %>
-              <%= image_tag('no_image.jpg', size:'250x220') %>
-            <% end %>
-          </div>
-          <div class="card col-7 mb-4 shadow-sm">
-            <div class="col-12">
-              </br><p>name：　<%= @user.name %></p>
-              <p>introduction：</p>
-              <p><%= @user.introduction %></p>
-              <%= link_to"edit", edit_user_path %>
-            </div>
-          </div>
-        </div>
-
-    <div class="card-deck-container col-md-14">
-          <h2>My Posts</h2>
+        <div class="card-deck-container col-md-9">
+          <h2>お気に入り一覧</h2>
           <div class="row">
-               <% @posts.each do |post| %>
+            <% if @favorite_list.present? %>
+              <% @favorite_list.each do |post| %>
                 <div class="card col-5 mx-3 mb-4 embed-responsive shadow-sm">
                   <% if post.post_image.attached? %>
                     <%= link_to post_path(post.id) do %>
@@ -52,20 +33,21 @@
                           <strong><i class="far fa-flag"></i><span> <%= post.title %></span></strong>
                         </p>
                         <span><i class="fas fa-user"></i>  <%= post.user.name %> ｜ </span>
-                        <span><%= post.post_comments.count %> コメント</span></br>
-                        <span><%= link_to"edit", edit_post_path(post) %>
-                        <%= link_to "destroy", post_path(post), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-                        </span>
+                        <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class:"text-dark" %></span>
                       </div>
                     </div>
                   </div>
                 </div>
               <% end %>
-
+            <% else %>
+              <div class="card-deck-container col-md-9">
+               いいねをした投稿がありません。
+               </div>
+            <% end %>
           <%#= paginate post_images %>
           </div>
         </div>
-   </div>
+
   </div>
-</div>
 </main>
+
