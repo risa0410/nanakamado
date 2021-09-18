@@ -54,14 +54,14 @@
                         <span><i class="fas fa-user"></i>  <%= post.user.name %> ｜ </span>
                         <span><%= post.post_comments.count %> コメント</span></br>
                         <span><%= link_to"edit", edit_post_path(post) %>
-                        <%= link_to "destroy", post, method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                        <%= link_to "destroy", post_path(post), method: :delete, "data-confirm" => "本当に削除しますか？" %>
                         </span>
                       </div>
                     </div>
                   </div>
                 </div>
               <% end %>
-            
+
           <%#= paginate post_images %>
           </div>
         </div>

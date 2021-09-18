@@ -57,6 +57,13 @@ class PostsController < ApplicationController
     @posts = @tag.posts
   end
 
+  def search
+    @user = current_user
+    @post = Post.search(params[:keyword])
+    @keyword = params[:keyword]
+    render :index
+  end
+
   private
   def post_params
     params.require(:post).permit(:title, :body, :post_image)

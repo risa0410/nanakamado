@@ -9,6 +9,10 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
+  
+  def self.search(keyword)
+    where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
+  end
 
   def create_notification_favorite!(current_user) # いいねがされているかどうか
     temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
@@ -45,7 +49,7 @@ class Post < ApplicationRecord
   end
 
 
-  has_many :post_hashtag_relations
+  has_many :post_hashtag_relations, dependent: :destroy
   has_many :hashtags, through: :post_hashtag_relations
 
   after_create do
