@@ -3,30 +3,21 @@
 
 <div class="col-md-6.mx-auto">
   <div class="form-inline"></form-inline>
-    <span></span>
-      <%= link_to user_path(visitor) do %>
-        <strong><%= visitor.name %></strong>
-        さんが
-
-        <% case notification.action %>
-          <% when 'follow' then %>
-            <span style="font-weight: bold;">あなたをフォローしました</span>
-
-          <% when 'favorite' then %>
-            <%= link_to "あなたの投稿にいいねしました", notification.post, style: "font-weight: bold;" %>
-
-
-          <% when 'comment' then %>
-
+    <%= link_to user_path(visitor) do %>
+      <strong><%= visitor.name %></strong>さんが
+      <% case notification.action %>
+        <% when 'follow' then %>
+          <span style="font-weight: bold;">あなたをフォローしました</span>
+        <% when 'favorite' then %>
+          <%= link_to "あなたの投稿にいいねしました", notification.post, style: "font-weight: bold;" %>
+        <% when 'comment' then %>
           <% if notification.post.user_id == visited.id %>
             <%= link_to "あなたの投稿にコメントしました", notification.post, style: "font-weight: bold;" %>
           <% end %>
-        <% end %>
       <% end %>
-
-  <small class="text-muted.text-right">
-    <%= notification.created_at.strftime('%Y/%m/%d %H:%M') %>
-  </small>
-
+    <% end %>
+    <small class="text-muted.text-right">
+      <%= notification.created_at.strftime('%Y/%m/%d %H:%M') %>
+    </small>
   </div>
 </div>
