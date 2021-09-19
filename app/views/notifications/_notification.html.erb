@@ -13,7 +13,7 @@
             <span style="font-weight: bold;">あなたをフォローしました</span>
 
           <% when 'favorite' then %>
-            <%= link_to 'あなたの投稿にいいねしました', notification.post, style: "font-weight: bold;" %>
+            <%= link_to "あなたの投稿にいいねしました", notification.post, style: "font-weight: bold;" %>
 
 
           <% when 'comment' then %>
@@ -25,7 +25,7 @@
       <% end %>
 
   <small class="text-muted.text-right">
-    <%= time_ago_in_words(notification.created_at).upcase %>
+    <%= notification.created_at.strftime('%Y/%m/%d %H:%M') %>
   </small>
 
   </div>

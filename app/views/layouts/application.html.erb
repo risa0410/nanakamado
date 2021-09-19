@@ -17,36 +17,41 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-              <% if user_signed_in? %>
+            <% if user_signed_in? %>
+            <ul class="navbar-nav w-100 nav-justified">
+              
                 <li class="nav-item">
-                  <%= link_to '投稿フォーム', new_post_path, class: 'nav-link text-dark' %>
+                  <%= link_to ' 新規投稿', new_post_path, class: 'fas fa-pencil-alt nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'みんなの投稿', posts_path, class: 'nav-link text-dark' %>
+                  <%= link_to ' 投稿一覧', posts_path, class: 'fas fa-book-open nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
+                  <%= link_to ' お気に入り', user_users_favorite_path(current_user.id), class: 'fas fa-heart nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+                  <%= link_to ' お知らせ', notifications_path, class: 'fas fa-bell nav-link text-dark' %>
                 </li>
+                <li class="nav-item">
+                  <%= link_to ' マイページ', user_path(current_user.id), class: 'fas fa-address-card nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to " ログアウト", destroy_user_session_path, method: :delete, class: 'fas fa-door-open nav-link text-dark' %>
+                </li>
+              </ul>
               <% else %>
+              <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+                  <%= link_to " 新規登録", new_user_registration_path, class: 'fas fa-user-plus nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+                  <%= link_to " ログイン", new_user_session_path, class: 'fas fa-sign-in-alt nav-link text-dark' %>
                 </li>
-              <% end %>
+              
             </ul>
+            <% end %>
           </div>
-          <div class="search-form">
-             <%= form_with url: search_path, method: :get, local: true do |f| %>
-               <%= f.text_field :keyword, value: @keyword %>
-               <%= f.submit "検索" %>
-             <% end %>
-          </div>
+
         </div>
       </nav>
     </header>

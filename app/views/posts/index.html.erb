@@ -6,6 +6,13 @@
         <%= render 'users/userinfo', user: @user %>
 
         <div class="card-deck-container col-md-9">
+          <div class="search-form offset-3">
+             <%= form_with url: search_path, method: :get, local: true do |f| %>
+               <%= f.text_field :keyword, class:"col-5", value: @keyword %>
+               <%= f.submit "検索" %>
+             <% end %>
+          </div>
+          
           <h2>Index</h2>
           <div class="row">
             <% @post.each do |post| %>
