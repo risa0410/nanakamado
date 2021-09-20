@@ -1,0 +1,39 @@
+<% chats.each do |chat| %>
+  <% if chat.user == current_user %>
+    <tr class="row justify-content-center">
+      <td class="col-2  mt-3">
+        <% if chat.user.profile_image.attached? %>
+          <%= image_tag chat.user.profile_image.variant(resize:'80x80'), class:"profile-image align-top" %>
+        <% else %>
+          <%= image_tag('no_image.jpg', size:'80x80', class:"profile-image align-top") %>
+        <% end %>
+      </td>
+      <td class="col-9 mt-3">
+        <%= chat.user.name %> <br>
+        <div class="says">
+          <p><%= safe_join(chat.message.split("\n"),tag(:br)) %></p>
+          <span><%=  chat.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+        </div>
+      </td>
+    </tr>
+  <% else %>
+    <tr class="row justify-content-center">
+      <td class="col-9 mt-3">
+        <div class="col-11 float-right">
+          <%= chat.user.name %> <br>
+        </div>
+        <div class="other-user-says">
+          <p><%= safe_join(chat.message.split("\n"),tag(:br)) %></p>
+          <span><%=  chat.created_at.strftime('%Y/%m/%d %H:%M') %></span>
+        </div>
+      </td>
+      <td class="col-2 mt-3">
+        <% if chat.user.profile_image.attached? %>
+          <%= image_tag chat.user.profile_image.variant(resize:'80x80'), class:"profile-image align-top" %>
+        <% else %>
+          <%= image_tag('no_image.jpg', size:'80x80', class:"profile-image align-top") %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

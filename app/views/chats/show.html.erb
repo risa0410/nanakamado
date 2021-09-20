@@ -1,0 +1,23 @@
+<main class="bg-white shadow-sm">
+  <p id="notice"></p>
+  <div class='container'>
+    <div class='row'>
+
+      <%= render 'users/userinfo', user: @user %>
+
+      <div class='col-md-9 pb-3'>
+        <h4><%= @user.name %>さんとのチャット</h4>
+        <div class="form-inline">
+          <%= render 'chats/chat_form', chat: @chat %>
+        </div>
+        <div>
+          <table id="chats_area_">
+            <%= render 'chats/chat_index', chats: @chats %>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
