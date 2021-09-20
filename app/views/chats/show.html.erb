@@ -1,79 +1,23 @@
 <main class="bg-white shadow-sm">
   <p id="notice"></p>
-<div class='container'>
-  <div class='row'>
+  <div class='container'>
+    <div class='row'>
 
-    <%= render 'users/userinfo', user: @user %>
+      <%= render 'users/userinfo', user: @user %>
 
-    <div class='col-md-9 pb-3'>
-
-      <h4><%= @user.name %>さんとのチャット</h4></br>
-      <div class="form-inline">
-        <%= form_with model: @chat do |f| %>
-          <%= f.text_area :message, class:"form-control shadow-sm" %>
-          <%= f.hidden_field :room_id %>
-          <%= f.submit '送信する', class:"btn btn-success" %>
-        <% end %>
+      <div class='col-md-9 pb-3'>
+        <h4><%= @user.name %>さんとのチャット</h4>
+        <div class="form-inline">
+          <%= render 'chats/chat_form', chat: @chat %>
+        </div>
+        <div>
+          <table id="chats_area_">
+            <%= render 'chats/chat_index', chats: @chats %>
+          </table>
+        </div>
       </div>
 
-    <table>
-      <% @chats.each do |chat| %>
-        <!-- 自分のメッセージの場合 -->
-        <% if chat.user == current_user %>
-
-          <tr class="row justify-content-center">
-            <!-- アイコンを左側に表示する -->
-            <td class="col-2  mt-3">
-              <% if chat.user.profile_image.attached? %>
-                <%= image_tag chat.user.profile_image.variant(resize:'80x80'), class:"profile-image align-top" %>
-              <% else %>
-                <%= image_tag('no_image.jpg', size:'80x80', class:"profile-image align-top") %>
-              <% end %>
-
-            </td>
-            <!-- メッセージを右側に表示する -->
-            <td class="col-9 mt-3">
-              <%= chat.user.name %> <br>
-              <!-- 自分用の吹き出しCSSクラスを適用する -->
-              <div class="says">
-                <p><%= safe_join(chat.message.split("\n"),tag(:br)) %></p>
-                <span><%=  chat.created_at.strftime('%Y/%m/%d %H:%M') %></span>
-              </div>
-            </td>
-          </tr>
-
-        <!-- 自分以外のメッセージの場合 -->
-        <% else %>
-          <tr class="row justify-content-center">
-            <!-- メッセージを左側に表示する -->
-            <td class="col-9 mt-3">
-              <div class="col-11 float-right">
-                <%= chat.user.name %> <br>
-              </div>
-              <!-- 自分以外用の吹き出しCSSクラスを適用する -->
-              <div class="other-user-says">
-                <p><%= safe_join(chat.message.split("\n"),tag(:br)) %></p>
-                <span><%=  chat.created_at.strftime('%Y/%m/%d %H:%M') %></span>
-              </div>
-            </td>
-            <!-- アイコンを右側に表示する -->
-            <td class="col-2 mt-3">
-              <% if chat.user.profile_image.attached? %>
-                <%= image_tag chat.user.profile_image.variant(resize:'80x80'), class:"profile-image align-top" %>
-              <% else %>
-                <%= image_tag('no_image.jpg', size:'80x80', class:"profile-image align-top") %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      <% end %>
-    </table>
-
-
-
-
-   </div>
+    </div>
   </div>
-</div>
 </main>
 

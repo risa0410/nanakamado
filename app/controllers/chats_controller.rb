@@ -20,7 +20,8 @@ class ChatsController < ApplicationController
   def create
     @chat = current_user.chats.new(chat_params)
     @chat.save
-    redirect_to request.referer
+    @room = Room.find(params[:chat][:room_id])
+    @chats = @room.chats.order(created_at: :desc)
   end
 
   private
