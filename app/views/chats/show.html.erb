@@ -8,11 +8,11 @@
     <div class='col-md-9 pb-3'>
 
       <h4><%= @user.name %>さんとのチャット</h4></br>
-      <div class="offset-5">
+      <div class="form-inline">
         <%= form_with model: @chat do |f| %>
-          <%= f.text_field :message, class:"col-7" %>
+          <%= f.text_area :message, class:"form-control shadow-sm" %>
           <%= f.hidden_field :room_id %>
-          <%= f.submit %>
+          <%= f.submit '送信する', class:"btn btn-success" %>
         <% end %>
       </div>
 

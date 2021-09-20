@@ -38,14 +38,15 @@
                           <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
                           <strong><i class="far fa-flag"></i><span> <%= post.title %></span></strong>
                       </p>
-                      <span><i class="fas fa-user"></i>  <%= post.user.name %> ｜ </span>
+                      <span><i class="fas fa-user"></i>  <%= post.user.name %></span></br>
+                      <span><%= post.favorites.count %> いいね ｜ </span>
                       <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class:"text-dark" %></span>
                     </div>
                   </div>
                 </div>
               </div>
             <% end %>
-          <%= paginate @post %>
+          <%#= paginate @post %>
           </div>
         </div>
 
