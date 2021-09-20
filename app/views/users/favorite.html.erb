@@ -6,7 +6,8 @@
         <%= render 'users/userinfo', user: current_user %>
 
         <div class="card-deck-container col-md-9">
-          <h2>お気に入り一覧</h2>
+          </br>
+          <h4>お気に入り</h4>
           <div class="row">
             <% if @favorite_list.present? %>
               <% @favorite_list.each do |post| %>

@@ -6,7 +6,8 @@
     <%= render 'users/userinfo', user: @user %>
 
     <div class='col-md-9'>
-      <h2>Mypage</h2>
+      </br>
+      <h4></h4>
         <div class="row">
           <div class="card col-4 mx-3 mb-4 embed-responsive shadow-sm">
             <% if @user.profile_image.attached? %>
@@ -17,16 +18,16 @@
           </div>
           <div class="card col-7 mb-4 shadow-sm">
             <div class="col-12">
-              </br><p>name：　<%= @user.name %></p>
-              <p>introduction：</p>
-              <p><%= @user.introduction %></p>
+              </br><p>名前　　：　<%= @user.name %></p>
+              <p>自己紹介：</p>
+              <p><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></p>
               <%= link_to"edit", edit_user_path %>
             </div>
           </div>
         </div>
 
     <div class="card-deck-container col-md-14">
-          <h2>My Posts</h2>
+          <h4>あなたの投稿</h4>
           <div class="row">
                <% @posts.each do |post| %>
                 <div class="card col-5 mx-3 mb-4 embed-responsive shadow-sm">

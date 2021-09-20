@@ -6,22 +6,23 @@
         <%= render 'users/userinfo', user: @user %>
 
         <div class='col-md-9'>
-        <h2>New Post</h2>
+          </br>
+        <h4>新規投稿</h4></br>
           <%= form_with model: @post, local:true do |f| %>
             <div class="form-group">
-              <label for="book_title">Image</label></br>
+              <label for="book_title">画像</label></br>
               <%= f.file_field :post_image %>
             </div>
             <div class="form-group">
-              <label for="book_title">Title</label></br>
+              <label for="book_title">タイトル</label></br>
               <%= f.text_field :title, class:"form-control book_title shadow-sm" %>
             </div>
             <div class="form-group">
-              <label for="book_opinion">Body</label></br>
+              <label for="book_opinion">内容</label></br>
               <%= f.text_area :body, class:"form-control book_body shadow-sm" %>
             </div>
             <div class="form-group">
-              <%= f.submit 'Create Post', class:"btn btn-success" %>
+              <%= f.submit '投稿する', class:"btn btn-success" %>
             </div>
           <% end %>
         </div>

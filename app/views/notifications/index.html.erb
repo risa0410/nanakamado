@@ -6,7 +6,8 @@
       <%= render 'users/userinfo', user: @user %>
 
       <div class="card-deck-container col-md-9">
-        <h2>お知らせ</h2>
+        </br>
+        <h4>お知らせ</h4>
         <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
 　　　　<% if notifications.exists? %>
 　　　　  <%= render notifications %>

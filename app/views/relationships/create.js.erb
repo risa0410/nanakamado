@@ -1,3 +1,3 @@
 $("#follow_").html("<%= j(render("relationships/follow")) %>");
-$("#follow_count").html("フォロー：<%= @user.followings.count %>");
-$("#follower_count").html("フォロワー：<%= @user.followers.count %>");
+$("#follow_count").html("<%= @user.followings.count %> フォロー");
+$("#follower_count").html("<%= @user.followers.count %> フォロワー");

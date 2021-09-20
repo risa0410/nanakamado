@@ -2,12 +2,18 @@
 <% visited = notification.visited %>
 
 <div class="col-md-6.mx-auto">
-  <div class="form-inline"></form-inline>
+  <div class="form-inline mb-2">
+    <small class="col-md-3 text-muted">
+      <%= notification.created_at.strftime('%Y/%m/%d %H:%M') %>
+    </small>
+
+
     <%= link_to user_path(visitor) do %>
       <strong><%= visitor.name %></strong>さんが
       <% case notification.action %>
         <% when 'follow' then %>
-          <span style="font-weight: bold;">あなたをフォローしました</span>
+        <%= link_to "あなたをフォローしました", user_path(visitor), style: "font-weight: bold;" %>
+          <!--<span style="font-weight: bold;">あなたをフォローしました</span>-->
         <% when 'favorite' then %>
           <%= link_to "あなたの投稿にいいねしました", notification.post, style: "font-weight: bold;" %>
         <% when 'comment' then %>
@@ -16,8 +22,7 @@
           <% end %>
       <% end %>
     <% end %>
-    <small class="text-muted.text-right">
-      <%= notification.created_at.strftime('%Y/%m/%d %H:%M') %>
-    </small>
+
+
   </div>
 </div>

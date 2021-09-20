@@ -3,37 +3,43 @@
   <div class='container'>
     <div class='row'>
 
-        <%= render 'users/userinfo', user: current_user %>
+      <%= render 'users/userinfo', user: @user %>
 
-        <div class="card-deck-container col-md-9">
-          <h2>フォロー</h2>
-          <div class="row">
-            <% if @users.exists? %>
-              <% @users.each do |user| %>
-
-                <div class="card col-8 mx-3 mb-4 px-5 embed-responsive shadow-sm text-center">
+      <div class="col-md-9 ">
+        </br>
+        <h4>フォロー</h4>
+        <table class='table table-inverse'>
+          <% if @users.exists? %>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
                   <% if user.profile_image.attached? %>
-                    <%= link_to post_path(post.id) do %>
-                      <%= image_tag user.profile_image.variant(resize:'40x40'), class:"card-img-top"; %>
-                    <% end %>
+                    <%= image_tag user.profile_image.variant(resize:'40x40') %>
                   <% else %>
                     <%= image_tag('no_image.jpg', size:'40x40') %>
                   <% end %>
-
-                  <%= user.name %>
+                </td>
+                <td>
+                  <%= link_to user.name, user_path(user) %>
+                </td>
+                <td>
                   フォロー数: <%= user.followings.count %>
+                </td>
+                <td>
                   フォロワー数: <%= user.followers.count %>
-                  <%= link_to "Show", user_path(user) %>
-                  </div>
-              <% end %>
-            <% else %>
-              <div class="card-deck-container col-md-9">
-               ユーザーはいません。
-              </div>
+                </td>
+              </tr>
             <% end %>
+          <% else %>
+            <div class="card-deck-container col-md-9">
+              ユーザーはいません。
+            </div>
+          <% end %>
           <%#= paginate post_images %>
-          </div>
-        </div>
-
+        </table>
+      </div>
+    </div>
   </div>
 </main>
+
+
