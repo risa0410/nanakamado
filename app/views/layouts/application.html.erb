@@ -14,23 +14,24 @@
 
   <body class="bg-light d-flex flex-column col-md-8 offset-md-2">
     <header class="bg-white shadow-sm my-3">
-
-      <p class="col-md-6 col-sm-8 col-xs-7 site-logo">
-
-				</br>
-				<span>
-				  <%= link_to root_path do %>
-            <%= image_tag('logo.png', size:'120x120') %>
-          <% end %>
-        </span>
-        </p>
-        <span>北欧雑貨やおうち時間を語らうサイト</span></br>
-        <span>
-				  <%= link_to root_path do %>
-            <%= image_tag('logoname.png', size:'220x40') %>
-          <% end %>
-
-        </span>
+      <div class="row">
+        <div class="col-md-6 col-sm-8 col-xs-7 site-logo">
+		  		</br>
+		  		<p>
+		  		  <%= link_to root_path do %>
+              <%= image_tag('logo.png', size:'120x120') %>
+            <% end %>
+          </p>
+          <p>
+            <span>北欧雑貨やおうち時間を語らうサイト</span></br>
+            <span>
+		  		    <%= link_to root_path do %>
+                <%= image_tag('logoname.png', size:'220x40') %>
+              <% end %>
+            </span>
+          </p>
+        </div>
+      </div>
 
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
