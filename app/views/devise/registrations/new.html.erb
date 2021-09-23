@@ -4,23 +4,22 @@
     <%= image_tag('logoname.png', size:'220x40') %>
       <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="field">
-          <%= f.text_field :name, autofocus: true, class:"col-4 form-control", placeholder:"名前" %>
+        <div class="field mt-4">
+          <%= f.text_field :name, autofocus: true, class:"col-4 form-control mx-auto", placeholder:"名前" %>
         </div></br>
         <div class="field">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-4 form-control", placeholder:"メールアドレス" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-4 form-control mx-auto", placeholder:"メールアドレス" %>
         </div></br>
         <div class="field">
-          <%= f.password_field :password, autocomplete: "new-password", class:"col-4 form-control", placeholder:"パスワード（6文字以上）" %>
+          <%= f.password_field :password, autocomplete: "new-password", class:"col-4 form-control mx-auto", placeholder:"パスワード（6文字以上）" %>
         </div></br>
         <div class="field">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-4 form-control", placeholder:"パスワード（確認用）" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-4 form-control mx-auto", placeholder:"パスワード（確認用）" %>
         </div></br>
         <div class="actions">
           <%= f.submit "登録する", class:"btn btn-outline-info" %>
         </div>
       <% end %>
       <%= render "devise/shared/links" %></br>
-
   </div>
 </main>

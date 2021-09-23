@@ -3,11 +3,11 @@
       </br></br>
       <%= image_tag('logoname.png', size:'220x40') %>
       <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-        <div class="field">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-4 form-control", placeholder:"メールアドレス" %>
+        <div class="field mt-4">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-4 form-control mx-auto", placeholder:"メールアドレス" %>
         </div></br>
         <div class="field">
-          <%= f.password_field :password, autocomplete: "current-password", class:"col-4 form-control", placeholder:"パスワード" %>
+          <%= f.password_field :password, autocomplete: "current-password", class:"col-4 form-control mx-auto", placeholder:"パスワード" %>
         </div></br>
         <% if devise_mapping.rememberable? %>
           <div class="field">

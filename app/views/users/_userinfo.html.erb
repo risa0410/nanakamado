@@ -2,10 +2,12 @@
   <table class="mx-auto text-break">
     </br>
     <tr>
-      <% if user.profile_image.attached? %>
-        <%= image_tag user.profile_image.variant(resize:'120x120') %>
-      <% else %>
-        <%= image_tag('no_image.jpg', size:'120x120') %>
+      <%= link_to user_path(user.id) do %>
+        <% if user.profile_image.attached? %>
+          <%= image_tag user.profile_image.variant(resize:'120x120'), class: "circle" %>
+        <% else %>
+          <%= image_tag('no_image.jpg', size:'120x120', class: "circle") %>
+        <% end %>
       <% end %>
     </tr>
     <tr>
