@@ -1,34 +1,26 @@
-<h2>アカウント作成</h2>
+<main class="bg-white shadow-sm text-center">
+  <div class='container'>
+    </br></br>
+    <%= image_tag('logoname.png', size:'220x40') %>
+      <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="field">
+          <%= f.text_field :name, autofocus: true, class:"col-4 form-control", placeholder:"名前" %>
+        </div></br>
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-4 form-control", placeholder:"メールアドレス" %>
+        </div></br>
+        <div class="field">
+          <%= f.password_field :password, autocomplete: "new-password", class:"col-4 form-control", placeholder:"パスワード（6文字以上）" %>
+        </div></br>
+        <div class="field">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"col-4 form-control", placeholder:"パスワード（確認用）" %>
+        </div></br>
+        <div class="actions">
+          <%= f.submit "登録する", class:"btn btn-outline-info" %>
+        </div>
+      <% end %>
+      <%= render "devise/shared/links" %></br>
 
-<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :名前 %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div></br>
-
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div></br>
-
-  <div class="field">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div></br>
-
-  <div class="field">
-    <%= f.label :パスワード（確認用） %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div></br>
-
-  <div class="actions">
-    <%= f.submit "登録する" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</main>

@@ -8,24 +8,28 @@
       <div class='col-md-9'>
         </br>
         <h4></h4>
-        <div class="row">
-          <div class="card col-4 mx-3 mb-4 embed-responsive shadow-sm">
+        <div>
+          <div class="card col-4 offset-md-3 mb-4 embed-responsive shadow-sm">
             <% if @user.profile_image.attached? %>
-              <%= image_tag @user.profile_image.variant(resize:'250x220') %>
+              <%= image_tag @user.profile_image.variant(resize:'250x250') %>
             <% else %>
-              <%= image_tag('no_image.jpg', size:'250x220') %>
+              <%= image_tag('no_image.jpg', size:'250x250') %>
             <% end %>
           </div>
-          <div class="card col-7 mb-4 shadow-sm">
+          <div class="col-8 offset-md-1 mb-4  text-center">
             <div class="col-12">
-              </br><p>名前　　：　<%= @user.name %></p>
-              <p>自己紹介：</p>
-              <p><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></p>
-              <%= link_to"edit", edit_user_path %>
-            </div>
+              <strong>ユーザーネーム</strong></br>
+              <h2><%= @user.name %></h2></br>
+              <strong>< 自己紹介 ></strong></br>
+              <h6><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></h6>
+            </div></br>
+            <%= link_to "プロフィールを編集する", edit_user_path, class:"btn btn-outline-info btn-sm col-5" %></br>
           </div>
         </div>
+
+
         <div class="card-deck-container col-md-14">
+          </br>
           <h4>あなたの投稿</h4>
           <div class="row">
             <% @posts.each do |post| %>
@@ -53,9 +57,9 @@
                       </p>
                       <span><i class="fas fa-user"></i>  <%= post.user.name %></span></br>
                       <span><%= post.favorites.count %> いいね ｜ </span>
-                      <span><%= post.post_comments.count %> コメント</span></br>
-                      <span><%= link_to"編集", edit_post_path(post) %>
-                      　<%= link_to "削除", post_path(post), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                      <span><%= post.post_comments.count %> コメント</span></br></br>
+                      <span><%= link_to "編集", edit_post_path(post), class:"btn btn-outline-info btn-sm" %>
+                      　<%= link_to "削除", post_path(post), method: :delete, class:"btn btn-outline-danger btn-sm", "data-confirm" => "本当に削除しますか？" %>
                       </span>
                     </div>
                   </div>

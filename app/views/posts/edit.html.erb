@@ -6,14 +6,15 @@
     <%= render 'users/userinfo', user: @user %>
 
     <div class='col-md-8'>
-      <h2>Editing Post</h2>
+      </br>
+      <h4>投稿の編集</h4>
       <div class="card embed-responsive shadow-sm">
         <% if @post.post_image.attached? %>
           <%= link_to post_path(@post.id) do %>
-            <%= image_tag @post.post_image, class:"card-img-top"; %>
+            <%= image_tag @post.post_image.variant(resize:'250x250'), class:"card-img-top"; %>
           <% end %>
         <% else %>
-          <%= image_tag('no_image.jpg') %>
+          <%= image_tag('no_image.jpg', size:'250x250') %>
         <% end %>
       </div>
         <%= form_with model:@post, local:true do |f| %>
@@ -28,7 +29,7 @@
           </div>
 
           <div class="form-group">
-            <%= f.submit "Update", class:"btn btn-secondary" %>
+            <%= f.submit "保存する", class:"btn btn-outline-info" %>
           </div>
         <% end %>
 

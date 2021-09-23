@@ -38,6 +38,9 @@
             <% if user_signed_in? %>
               <ul class="navbar-nav w-100 nav-justified">
                 <li class="nav-item">
+                  <%= link_to ' About', home_about_path, class: 'fas fa-leaf nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
                   <%= link_to ' 新規投稿', new_post_path, class: 'fas fa-pencil-alt nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
@@ -66,6 +69,9 @@
             <% else %>
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
+                  <%= link_to ' About', home_about_path, class: 'fas fa-leaf nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
                   <%= link_to " 新規登録", new_user_registration_path, class: 'fas fa-user-plus nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
@@ -78,7 +84,7 @@
       </nav>
     </header>
     <%= yield %>
-    <footer class="bg-danger text-light pt-5 pb-4 mt-3 mb-3 shadow-sm">
+    <footer class="bg-danger text-light pt-4 pb-3 mt-3 mb-3 shadow-sm">
       <div class="container text-center">
         <p>Copyright 2021(C) nanakamado. All Rights Reserved.</p>
       </div>

@@ -3,45 +3,36 @@
     </br>
     <tr>
       <% if user.profile_image.attached? %>
-        <%= image_tag user.profile_image.variant(resize:'100x80') %>
+        <%= image_tag user.profile_image.variant(resize:'120x120') %>
       <% else %>
-        <%= image_tag('no_image.jpg', size:'100x80') %>
+        <%= image_tag('no_image.jpg', size:'120x120') %>
       <% end %>
     </tr>
     <tr>
       <th></th>
     </tr>
     <tr>
-      <th><h4><%= user.name %></h4></th>
-    </tr>
-    <tr>
-      <th><h6 class='col-md-12'><%= safe_join(user.introduction.split("\n"),tag(:br)) %></h6></th>
-    </tr>
-    <tr>
-    	<th><span id="follow_">
-    	  <%= render 'relationships/follow' %>
-    	</span></th>
-    </tr>
-    <tr>
-      <th>
-      <%= link_to user_followings_path(user.id) do %>
-      <span id="follow_count"><%= user.followings.count %> フォロー</span>
-      <% end %>
-      </th>
-    </tr>
-    <tr>
-      <th>
-      <%= link_to user_followers_path(user.id) do %>
-      <span id="follower_count"><%= user.followers.count %> フォロワー</span>
-      <% end %>
-      </th>
-    </tr>
-    <tr>
-      <th>
-        <% if current_user != user %>
-          <%= link_to ' chatを始める', chat_path(user.id), class: 'fas fa-comment-dots' %>
-        <% end %>
-      </th>
+      <th><h3><%= user.name %></h3></th>
     </tr>
   </table>
+  <div>
+    <strong>
+  	  <span id="follow_">
+  	    <%= render 'relationships/follow' %>
+  	  </span></br>
+      <%= link_to user_followings_path(user.id) do %>
+        <span id="follow_count"><%= user.followings.count %> フォロー</span>
+      <% end %>
+      </strong>
+  </div>
+  <div>
+    <strong>
+      <%= link_to user_followers_path(user.id) do %>
+        <span id="follower_count"><%= user.followers.count %> フォロワー</span>
+      <% end %>
+      <% if current_user != user %>
+        <%= link_to ' chatを始める', chat_path(user.id), class: 'fas fa-comment-dots' %>
+      <% end %>
+    </strong>
+  </div>
 </div>
