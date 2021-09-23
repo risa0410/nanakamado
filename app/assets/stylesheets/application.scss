@@ -56,6 +56,15 @@ body {
   border: 1px solid #EEEEEE;
 }
 
+.circle4 {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+  padding: 2px;
+  border: 1px solid #EEEEEE;
+}
+
 .swiper-wrapper .swiper-slide {
   background-position: center center;
   background-size: cover;

@@ -3,9 +3,9 @@
     <tr class="row justify-content-center">
       <td class="col-2  mt-3">
         <% if chat.user.profile_image.attached? %>
-          <%= image_tag chat.user.profile_image.variant(resize:'80x80'), class:"profile-image align-top" %>
+          <%= image_tag chat.user.profile_image.variant(resize:'70x70'), class:"profile-image align-top circle4" %>
         <% else %>
-          <%= image_tag('no_image.jpg', size:'80x80', class:"profile-image align-top") %>
+          <%= image_tag('no_image.jpg', size:'70x70', class:"profile-image align-top circle4") %>
         <% end %>
       </td>
       <td class="col-9 mt-3">
@@ -29,9 +29,9 @@
       </td>
       <td class="col-2 mt-3">
         <% if chat.user.profile_image.attached? %>
-          <%= image_tag chat.user.profile_image.variant(resize:'80x80'), class:"profile-image align-top" %>
+          <%= image_tag chat.user.profile_image.variant(resize:'70x70'), class:"profile-image align-top circle4" %>
         <% else %>
-          <%= image_tag('no_image.jpg', size:'80x80', class:"profile-image align-top") %>
+          <%= image_tag('no_image.jpg', size:'70x70', class:"profile-image align-top circle4") %>
         <% end %>
       </td>
     </tr>
