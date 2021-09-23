@@ -24,28 +24,31 @@ body {
 }
 
 .swiper-wrapper .swiper-slide {
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 80vh;
-    overflow: hidden;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 80vh;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
+
 .txt_area{
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    color: white;
-    top: 45%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: white;
+  top: 45%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
+
 .txt_area h3{
-    font-size: 40px;
-    padding-bottom: 10px;
-  }
+  font-size: 40px;
+  padding-bottom: 10px;
+}
+
 .txt_area .txt{
-        font-size: 21px;
- }
+  font-size: 21px;
+}
 
