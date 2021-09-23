@@ -38,17 +38,21 @@ body {
   width: 100%;
   text-align: center;
   color: white;
-  top: 45%;
+  top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
 .txt_area h3{
-  font-size: 40px;
+  font-size: 90px;
   padding-bottom: 10px;
 }
 
 .txt_area .txt{
-  font-size: 21px;
+  font-size: 22px;
+  line-height: 35px;
 }
 
+.about{
+  filter: blur(5px);
+}
