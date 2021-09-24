@@ -23,29 +23,79 @@ body {
   background-image: url("hoge.jpg");
 }
 
-.swiper-wrapper .swiper-slide {
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 60vh;
-    overflow: hidden;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+.background {
+  background-image: image-url("background.png");
+  background-size: contain;
+  background-position: center center;
 }
-.txt_area{
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    color: white;
-    top: 45%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-.txt_area h3{
-    font-size: 40px;
-    padding-bottom: 10px;
-  }
-.txt_area .txt{
-        font-size: 21px;
- }
 
+.circle {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  object-fit: cover;
+  padding: 2px;
+  border: 1px solid #EEEEEE;
+}
+
+.circle2 {
+  border-radius: 50%;
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+  padding: 5px;
+  border: 1px solid #EEEEEE;
+}
+
+.circle3 {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  padding: 1px;
+  border: 1px solid #EEEEEE;
+}
+
+.circle4 {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+  padding: 2px;
+  border: 1px solid #EEEEEE;
+}
+
+.swiper-wrapper .swiper-slide {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 80vh;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.txt_area{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: white;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.txt_area h3{
+  font-size: 70px;
+  padding-bottom: 10px;
+}
+
+.txt_area .txt{
+  font-size: 19px;
+  line-height: 32px;
+  letter-spacing: 3px;
+}
+
+.about{
+  filter: blur(5px);
+}

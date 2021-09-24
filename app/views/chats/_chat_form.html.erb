@@ -1,5 +1,5 @@
 <%= form_with model: chat do |f| %>
   <%= f.text_area :message, class:"form-control shadow-sm" %>
   <%= f.hidden_field :room_id %>
-  <%= f.submit '送信する', class:"btn btn-success" %>
+  <%= f.submit '送信する', class:"btn btn-outline-info" %>
 <% end %>

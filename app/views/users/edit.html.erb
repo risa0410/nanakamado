@@ -6,7 +6,7 @@
     <%= render 'users/userinfo', user: @user %>
 
     <div class='col-md-9'>
-      <h2>Editing Mypage</h2>
+      <h4>プロフィール編集</h4>
         <%= form_with model:@user, local:true do |f| %>
           <div class="form-group">
             <label for="user_name">Name</label></br>
@@ -26,14 +26,14 @@
           <div class="form-group">
             <%= f.submit "Update User", class:"btn btn-secondary" %>
           </div>
-        <% end %>
-      <h2>Now</h2>
+        <% end %></br>
+      <h4>現在のプロフィール</h4>
       <div class="row">
         <div class="card col-4 mx-3 mb-4 embed-responsive shadow-sm">
           <% if @user.profile_image.attached? %>
-            <%= image_tag @user.profile_image.variant(resize:'250x220') %>
+            <%= image_tag @user.profile_image.variant(resize:'250x250') %>
           <% else %>
-            <%= image_tag('no_image.jpg', size:'250x220') %>
+            <%= image_tag('no_image.jpg', size:'250x250') %>
           <% end %>
         </div>
         <div class="card col-7 mb-4 shadow-sm">

@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html class="bg-light">
+
   <head>
     <title>Nanakamado</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/swiper@4.5.1/dist/css/swiper.min.css"/>
     <script src="//cdn.jsdelivr.net/npm/swiper@4.5.1/dist/js/swiper.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
 
   <body class="bg-light d-flex flex-column col-md-8 offset-md-2">
     <header class="bg-white shadow-sm my-3">
+      <div class="col-md-6 col-sm-8 col-xs-7 site-logo">
+        <nav class="navbar navbar-expand-lg navbar-light">
+		  	  </br>
+		  	  <%= link_to root_path do %>
+            <%= image_tag('logo.png', size:'90x90') %>
+          <% end %>
+          <p class="ml-2 mt-4">
+            <span>北欧雑貨やおうち時間を語らうサイト</span></br>
+            <span>
+		  	      <%= link_to root_path do %>
+                <%= image_tag('logoname.png', size:'220x40') %>
+              <% end %>
+            </span>
+          </p>
+        </nav>
+      </div>
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +37,9 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <% if user_signed_in? %>
               <ul class="navbar-nav w-100 nav-justified">
+                <li class="nav-item">
+                  <%= link_to ' About', home_about_path, class: 'fas fa-leaf nav-link text-dark' %>
+                </li>
                 <li class="nav-item">
                   <%= link_to ' 新規投稿', new_post_path, class: 'fas fa-pencil-alt nav-link text-dark' %>
                 </li>
@@ -51,6 +69,9 @@
             <% else %>
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
+                  <%= link_to ' About', home_about_path, class: 'fas fa-leaf nav-link text-dark' %>
+                </li>
+                <li class="nav-item">
                   <%= link_to " 新規登録", new_user_registration_path, class: 'fas fa-user-plus nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
@@ -62,28 +83,12 @@
         </div>
       </nav>
     </header>
-
     <%= yield %>
-
-    <footer class="bg-white text-dark pt-5 pb-4 mt-3 mb-3 shadow-sm">
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <p>Copyright 2021(C) nanakamado. All Rights Reserved.</p>
-          </div>
-          <div class="col-md-8">
-            <h6 class="text-dark mt-2 mb-3">Link</h6>
-            <ul class="p-0 list-unstyled">
-              <li>
-                <a href="" title="About" class="text-dark-50">会社概要</a>
-              </li>
-              <li>
-                <a href="" title="License informations" class="text-dark-50">プライバシーポリシー</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+    <footer class="bg-danger text-light pt-4 pb-3 mt-3 mb-3 shadow-sm">
+      <div class="container text-center">
+        <p>Copyright 2021(C) nanakamado. All Rights Reserved.</p>
       </div>
     </footer>
   </body>
+
 </html>
