@@ -6,27 +6,26 @@
       <%= render 'users/userinfo', user: @user %>
 
       <div class='col-md-9'>
-        </br>
-        <h4></h4>
-        <div class="background">
-          <div class="col-5 offset-md-4 mb-4 embed-responsive">
+        
+        
+        <div class="background col-md-11">
+          </br>
+          <div class="col-6 offset-md-1 mb-2 embed-responsive">
             <% if @user.profile_image.attached? %>
               <%= image_tag @user.profile_image.variant(resize:'250x250'), class:"circle2" %>
             <% else %>
               <%= image_tag('no_image.jpg', size:'250x250', class:"circle2") %>
             <% end %>
           </div>
-          <div class="col-8 offset-md-2 mb-4 text-center">
-            <div class="col-12">
+          <div class="col-8 offset-md-1 mb-5">
               <strong>ユーザーネーム</strong></br>
               <h2><%= @user.name %></h2></br>
               <strong>自己紹介</strong></br>
               <h6><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></h6>
-            </div></br>
-            <% if @user == current_user %>
-            <%= link_to "プロフィールを編集する", edit_user_path, class:"btn btn-outline-info btn-sm col-5" %></br>
-            <% end %>
           </div>
+          <% if @user == current_user %>
+            <%= link_to "プロフィールを編集する", edit_user_path, class:"btn btn-outline-info btn-sm col-5 float-right" %></br>
+            <% end %>
         </div>
 
         <div class="card-deck-container col-md-14">

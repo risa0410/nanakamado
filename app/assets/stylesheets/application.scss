@@ -24,10 +24,9 @@ body {
 }
 
 .background {
-  background-image: image-url("background.png");
+  background-image: image-url("backimage.jpg");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center center;
 }
 
 .circle {
@@ -99,4 +98,8 @@ body {
 
 .about{
   filter: blur(5px);
+}
+
+.pagination {
+  justify-content: center;
 }
