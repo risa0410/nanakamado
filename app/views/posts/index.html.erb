@@ -9,7 +9,7 @@
           <div class="search-form col-md-11" style="text-align: right">
              <%= form_with url: search_path, method: :get, local: true do |f| %>
                <%= f.text_field :keyword, class:"col-4", value: @keyword %>
-               <%= f.submit "検索" %>
+               <%= f.submit "検索", class:"btn btn-light btn-sm mb-1" %>
              <% end %>
           </div>
 
@@ -46,8 +46,9 @@
                 </div>
               </div>
             <% end %>
-          <%#= paginate @post %>
+
           </div>
+          <%= paginate @post %>
         </div>
 
   </div>
