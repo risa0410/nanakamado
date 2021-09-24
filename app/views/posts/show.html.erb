@@ -16,10 +16,12 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-2" style="text-align:center;">
-                  <% if @user.profile_image.attached? %>
-                    <%= image_tag @user.profile_image.variant(resize:'50x50'), class:"circle3"; %>
-                  <% else %>
-                    <%= image_tag('no_image.jpg', size:'50x50', class:"circle3") %>
+                  <%= link_to user_path(@user.id) do %>
+                    <% if @user.profile_image.attached? %>
+                      <%= image_tag @user.profile_image.variant(resize:'50x50'), class:"circle3"; %>
+                    <% else %>
+                      <%= image_tag('no_image.jpg', size:'50x50', class:"circle3") %>
+                    <% end %>
                   <% end %>
                   <%= @user.name %>
                 </div>

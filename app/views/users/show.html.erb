@@ -23,7 +23,9 @@
               <strong>自己紹介</strong></br>
               <h6><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></h6>
             </div></br>
+            <% if @user == current_user %>
             <%= link_to "プロフィールを編集する", edit_user_path, class:"btn btn-outline-info btn-sm col-5" %></br>
+            <% end %>
           </div>
         </div>
 
@@ -57,9 +59,12 @@
                       <span><i class="fas fa-user"></i>  <%= post.user.name %></span></br>
                       <span><%= post.favorites.count %> いいね ｜ </span>
                       <span><%= post.post_comments.count %> コメント</span></br></br>
-                      <span><%= link_to "編集", edit_post_path(post), class:"btn btn-outline-info btn-sm" %>
-                      　<%= link_to "削除", post_path(post), method: :delete, class:"btn btn-outline-danger btn-sm", "data-confirm" => "本当に削除しますか？" %>
-                      </span>
+                      <% if @user == current_user %>
+                        <span>
+                          <%= link_to "編集", edit_post_path(post), class:"btn btn-outline-info btn-sm" %>
+                        　<%= link_to "削除", post_path(post), method: :delete, class:"btn btn-outline-danger btn-sm", "data-confirm" => "本当に削除しますか？" %>
+                        </span>
+                      <% end %>
                     </div>
                   </div>
                 </div>

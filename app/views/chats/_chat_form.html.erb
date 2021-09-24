@@ -1,5 +1,11 @@
 <%= form_with model: chat do |f| %>
-  <%= f.text_area :message, class:"form-control shadow-sm" %>
-  <%= f.hidden_field :room_id %>
-  <%= f.submit '送信する', class:"btn btn-outline-info" %>
+  <div class="row">
+    <div class="col-8">
+      <%= f.text_area :message, class:"form-control shadow-sm" %>
+      <%= f.hidden_field :room_id %>
+    </div>
+    <div class="col-2 mt-4">
+      <%= f.submit '送信する', class:"btn btn-outline-info" %>
+    </div>
+  </div>
 <% end %>
