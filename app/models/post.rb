@@ -1,20 +1,28 @@
 class Post < ApplicationRecord
 
   belongs_to :user
-
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :post_hashtag_relations, dependent: :destroy
+  has_many :hashtags, through: :post_hashtag_relations
+  validates :title, presence: true, length: { minimum: 1, maximum: 10 }
+  validates :body, presence: true, length: { maximum: 1000 }
+  has_one_attached :post_image
+  validate :post_image_type
+
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
-  
+
   def self.search(keyword)
     where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
   end
 
-  def create_notification_favorite!(current_user) # いいねがされているかどうか
+
+  # いいねがされているかどうか
+  def create_notification_favorite!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
     if temp.blank?
       notification = current_user.active_notifications.new(
@@ -28,13 +36,17 @@ class Post < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-  def create_notification_comment!(current_user, post_comment_id) # コメントがされているかどうか
+
+
+  # コメントがされているかどうか
+  def create_notification_comment!(current_user, post_comment_id)
     temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
     temp_ids.each do |temp_id|
       save_notification_comment!(current_user, post_comment_id, temp_id['user_id'])
     end
     save_notification_comment!(current_user, post_comment_id, user_id) if temp_ids.blank?
   end
+
   def save_notification_comment!(current_user, post_comment_id, visited_id)
     notification = current_user.active_notifications.new(
       post_id: id,
@@ -48,9 +60,6 @@ class Post < ApplicationRecord
     notification.save if notification.valid?
   end
 
-
-  has_many :post_hashtag_relations, dependent: :destroy
-  has_many :hashtags, through: :post_hashtag_relations
 
   after_create do
     post = Post.find_by(id: self.id)
@@ -72,14 +81,15 @@ class Post < ApplicationRecord
     end
   end
 
-  has_one_attached :post_image
-  validate :post_image_type
 
   private
+
   def post_image_type
-    if !post_image.blob.content_type.in?(%('post_image/jpeg post_image/png'))
+    if !post_image.attached?
+      errors.add(:post_image, 'not registered')
+    elsif !post_image.blob.content_type.in?(%('post_image/jpeg post_image/png'))
       post_image.purge # Rails6では、この1行は必要ない
-      errors.add(:post_image, 'はJPEGまたはPNG形式を選択してアップロードしてください')
+      errors.add(:post_image, 'Please select JPEG or PNG format and upload')
     end
   end
 

@@ -25,7 +25,7 @@ body {
 
 .background {
   background-image: image-url("backimage.jpg");
-  background-size: contain;
+  background-size: 100%;
   background-repeat: no-repeat;
 }
 
@@ -102,4 +102,37 @@ body {
 
 .pagination {
   justify-content: center;
+}
+
+
+.page-item.active .page-link {
+  background-color: #93c9ff;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.page-item:first-child .page-link {
+  margin-left: 0;
+  border-radius: 20px;
+}
+
+.page-item:last-child .page-link {
+  border-radius: 20px;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  line-height: 1.1;
+  border: none;
+  border-radius: 20px;
+}
+
+a {
+  text-decoration: none;
 }

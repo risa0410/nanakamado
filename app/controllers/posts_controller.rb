@@ -2,7 +2,6 @@ class PostsController < ApplicationController
 
   def new
     @user = current_user
-    @post = Post.new
   end
 
   def create
@@ -12,7 +11,7 @@ class PostsController < ApplicationController
       redirect_to post_path(@post)
       flash[:notice] = "You have created book successfully."
     else
-      render new_post_path
+      redirect_to new_post_path, alert: @post.errors.full_messages.join(", ")
     end
   end
 
