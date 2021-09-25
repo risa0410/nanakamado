@@ -11,19 +11,32 @@
           <h4></h4>
           <%= form_with model: Post.new, local:true do |f| %>
             <div class="form-group">
-              <label for="book_title">画像</label></br>
+              <label for="post_image">画像
+                <span class="text-black-50">（必須）</span>
+              </label></br>
               <%= f.file_field :post_image %>
             </div></br>
             <div class="form-group">
-              <label for="book_title">タイトル</label></br>
-              <%= f.text_field :title, class:"form-control book_title col-5 shadow-sm" %>
+              <label for="post_title">タイトル
+                <span class="text-black-50">（必須）</span>
+              </label></br>
+              <%= f.text_field :title, class:"form-control book_title col-5 shadow-sm", placeholder:"10文字以内" %>
             </div></br>
-            <div class="form-group">
-              <label for="book_opinion">内容</label></br>
-              <%= f.text_area :body, class:"form-control book_body col-9 shadow-sm" %>
-            </div>
-            <div class="form-group">
-              <%= f.submit '投稿する', class:"btn btn-outline-info" %>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="post_body">内容
+                    <span class="text-black-50">（必須）</span>
+                  </label></br>
+                  <%= f.text_area :body, class:"form-control book_body col-8 shadow-sm", placeholder:"1000文字以内" %>
+                </div>
+
+              <div class="col-4 offset-8">
+                <div class="form-group">
+                  <%= f.submit '投稿する', class:"btn btn-outline-info" %>
+                </div>
+              </div>
+              </div>
             </div>
           <% end %>
         </strong>

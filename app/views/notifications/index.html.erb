@@ -7,13 +7,18 @@
 
       <div class="card-deck-container col-md-9">
         </br>
-        <h4>お知らせ</h4>
+        <h5>
+          <i class="fas fa-bell"></i>
+          <strong>お知らせ一覧</strong>
+        </h5>
         <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
 　　　　<% if notifications.exists? %>
 　　　　  <%= render notifications %>
 　　　　  <%= paginate notifications %>
 　　　　<% else %>
-　　　　  通知はありません
+　　　　  <div class="card-deck-container col-md-9">
+            通知はありません。
+          </div>
 　　　　<% end %>
       </div>
     </div>
