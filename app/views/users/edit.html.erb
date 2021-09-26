@@ -1,15 +1,5 @@
-<div id = "error_explanation" style="background-color: #FFB6C1; ">
-  <% if @user.errors.any? %>
-    <div class="ml-4 mt-3">
-      <%= @user.errors.count %> errors prohibited this obj from being saved:
-    </div>
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-</div>
+
+<%= render 'users/error_windows', post: @user %>
 
 <main class="bg-white shadow-sm">
   <p id="notice"></p>
