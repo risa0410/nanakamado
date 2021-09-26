@@ -41,7 +41,10 @@
                     <div class="col-9 offset-1">
                       <p class="card-title">
                           <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
-                          <strong><i class="far fa-flag"></i><span> <%= post.title %></span></strong>
+                          <strong>
+                            <i class="far fa-flag"></i>
+                            <span> <%= post.title %></span>
+                          </strong>
                       </p>
                       <span><i class="fas fa-user"></i>  <%= post.user.name %></span></br>
                       <span><%= post.favorites.count %> いいね ｜ </span>

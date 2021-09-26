@@ -1,3 +1,16 @@
+<div id = "error_explanation" style="background-color: #FFB6C1; ">
+  <% if @post.errors.any? %>
+    <div class="ml-4 mt-3">
+      <%= @post.errors.count %> errors prohibited this obj from being saved:
+    </div>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
 <main class="bg-white shadow-sm">
   <p id="notice"></p>
   <div class='container'>
@@ -9,13 +22,14 @@
         </br>
         <strong>
           <h4></h4>
-          <%= form_with model: Post.new, local:true do |f| %>
+          <%= form_with model: @post, local:true do |f| %>
             <div class="form-group">
               <label for="post_image">画像
                 <span class="text-black-50">（必須）</span>
               </label></br>
               <%= f.file_field :post_image %>
             </div></br>
+
             <div class="form-group">
               <label for="post_title">タイトル
                 <span class="text-black-50">（必須）</span>

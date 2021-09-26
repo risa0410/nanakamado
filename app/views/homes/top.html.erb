@@ -1,3 +1,11 @@
+<div id = "error_explanation"  style="background-color: #FFB6C1;">
+  <% if flash[:notice] %>
+    <div class="ml-4 mt-3">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+</div>
+
 <main class="bg-white shadow-sm">
   <% if user_signed_in? %>
     <div class="container mt-3 mb-3">

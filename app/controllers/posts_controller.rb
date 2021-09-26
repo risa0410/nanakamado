@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   def new
     @user = current_user
+    @post = Post.new
   end
 
   def create
@@ -11,7 +12,9 @@ class PostsController < ApplicationController
       redirect_to post_path(@post)
       flash[:notice] = "You have created book successfully."
     else
-      redirect_to new_post_path, alert: @post.errors.full_messages.join(", ")
+      @user = current_user
+      render :new
+      # redirect_to new_post_path, alert: @post.errors.full_messages.join(", ")
     end
   end
 
@@ -36,9 +39,10 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    @user = @post.user
     if @post.update(post_params)
       redirect_to post_path(@post)
-      # flash[:notice] = "You have updated book successfully."
+      flash[:notice] = "You have updated book successfully."
     else
       render :edit
     end
@@ -48,6 +52,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to user_path(current_user)
+    flash[:notice] = "You have created book successfully."
   end
 
   def hashtag

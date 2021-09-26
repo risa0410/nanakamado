@@ -1,0 +1,10 @@
+<div id = "error_explanation" style="background-color: #FFB6C1	;,color: #666666;">
+  <% if @post.errors.any? %>
+   <h5 class="ml-4 mt-3"><%= @post.errors.count %> errors prohibited this obj from being saved:</h5>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

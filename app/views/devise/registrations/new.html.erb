@@ -1,9 +1,11 @@
+<%= render "devise/shared/error_messages", resource: resource %>
 <main class="bg-white shadow-sm text-center">
   <div class='container'>
+
     </br></br>
     <%= image_tag('logoname.png', size:'220x40') %>
       <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+
         <div class="field mt-4">
           <%= f.text_field :name, autofocus: true, class:"col-4 form-control mx-auto", placeholder:"名前（10文字以内）" %>
         </div></br>
