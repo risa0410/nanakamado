@@ -86,10 +86,10 @@ class Post < ApplicationRecord
 
   def post_image_type
     if !post_image.attached?
-      errors.add(:post_image, 'not registered')
+      errors.add(:base, '画像が登録されていません')
     elsif !post_image.blob.content_type.in?(%('post_image/jpeg post_image/png'))
       post_image.purge # Rails6では、この1行は必要ない
-      errors.add(:post_image, 'Please select JPEG or PNG format and upload')
+      errors.add(:base, 'JPEGまたはPNG形式の画像を登録してください')
     end
   end
 
