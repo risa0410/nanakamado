@@ -17,9 +17,9 @@
               <tr>
                 <td>
                   <% if user.profile_image.attached? %>
-                    <%= image_tag user.profile_image.variant(resize:'40x40') %>
+                    <%= image_tag user.profile_image.variant(resize:'40x40'), class:"circle4"; %>
                   <% else %>
-                    <%= image_tag('no_image.jpg', size:'40x40') %>
+                    <%= image_tag('no_image.jpg', size:'40x40', class:"circle4") %>
                   <% end %>
                 </td>
                 <td>
@@ -38,7 +38,6 @@
               ユーザーはいません。
             </div>
           <% end %>
-          <%#= paginate post_images %>
         </table>
       </div>
     </div>

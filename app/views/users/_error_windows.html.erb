@@ -1,7 +1,7 @@
 <div id = "error_explanation" style="background-color: #FFB6C1;" class="shadow-sm">
   <% if post.errors.any? %>
     <div class="ml-4 mt-3">
-      <%= post.errors.count %> errors prohibited this obj from being saved:
+      <%= post.errors.count %> 件のエラーが発生しました。
     </div>
     <ul>
       <% post.errors.full_messages.each do |message| %>
