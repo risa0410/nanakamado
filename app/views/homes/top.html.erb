@@ -1,53 +1,63 @@
+
+<%= render 'users/flash_notice' %>
+
 <main class="bg-white shadow-sm">
-  <!--<p id="notice"></p>-->
+  <% if user_signed_in? %>
+    <div class="container mt-3 mb-3">
+      <h4 class="ml-5"><strong>新着投稿 </strong><i class="fas fa-democrat"></i></h4>
+      <div class="row mt-3">
+        <% @posts.each do |post| %>
+          <div class="col-md-3">
+            <div>
+              <div><strong>
+                <i class="far fa-flag"></i> <%= post.title %>
+              </strong></div>
+              <%= link_to post_path(post.id) do %>
+                <%= image_tag post.post_image.variant(resize:'200x200'), class: "shadow-sm rounded" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <p class="text-right">
+        <strong><%= link_to "みんなの投稿を見る＞", posts_path %></strong>
+      </p>
+    </div>
+  <% end %>
   <div class="swiper-container">
-    <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
        <div class="swiper-slide">
-         <%= image_tag 'top画像①.jpg', style: 'max-width: -webkit-fill-available' %>
+         <%= image_tag 'top1.jpg', style: 'max-width: -webkit-fill-available' %>
        </div>
        <div class="swiper-slide">
-         <%= image_tag 'top画像②.jpg', style: 'max-width: -webkit-fill-available' %>
+         <%= image_tag 'top2.jpg', style: 'max-width: -webkit-fill-available' %>
        </div>
        <div class="swiper-slide">
-         <%= image_tag 'top画像③.jpg', style: 'max-width: -webkit-fill-available' %>
+         <%= image_tag 'top3.jpg', style: 'max-width: -webkit-fill-available' %>
        </div>
        <div class="swiper-slide">
-         <%= image_tag 'top画像④.jpg', style: 'max-width: -webkit-fill-available' %>
+         <%= image_tag 'top4.jpg', style: 'max-width: -webkit-fill-available' %>
        </div>
     </div>
-
-    <!-- pagination -->
-    <!--<div class="swiper-pagination swiper-pagination-white"></div>-->
-
-    <!-- navigation buttons -->
-    <!--div class="swiper-button-prev swiper-button-white"></div -->
-    <!--div class="swiper-button-next swiper-button-white"></div -->
-
   </div>
+
 
   <script>
     (function () {
       var elem = document.querySelector(".swiper-container");
-      if (elem !== null) { //swiper-containerがあれば…
+      if (elem !== null) {
       var mySwiper = new Swiper(".swiper-container", {
-      loop: true, //ループさせる
-      effect: "fade", //フェードのエフェクト
-      autoplay: {
-      delay: 4000, //４秒後に次の画像へ
-      disableOnInteraction: false //ユーザー操作後に自動再生を再開する
-    },
-      speed: 2000, //２秒かけながら次の画像へ移動
-      allowTouchMove: false, //マウスでのスワイプを禁止
-      navigation: { //左右のページ送りを有効にする
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
-    },
-      pagination: { //円形のページネーションを有効にする
-      el: ".swiper-pagination",
-      clickable: true //クリックを有効にする
-    }
-    });
+        loop: true,
+        effect: "fade",
+        autoplay: {
+          delay: 3500, //１つの画像の表示時間
+          disableOnInteraction: false //ユーザー操作後に自動再生を再開する
+        },
+        speed: 2000, //次の画像へ移動速度
+        allowTouchMove: false, //マウスでのスワイプを禁止
+        navigation: { //左右のページ送りを有効にする
+        }
+      });
     }
     })();
   </script>

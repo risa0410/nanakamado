@@ -24,9 +24,9 @@ body {
 }
 
 .background {
-  background-image: image-url("background.png");
-  background-size: contain;
-  background-position: center center;
+  background-image: image-url("backimage.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .circle {
@@ -35,7 +35,7 @@ body {
   width: 120px;
   object-fit: cover;
   padding: 2px;
-  border: 1px solid #EEEEEE;
+  border: 1px solid #696969;
 }
 
 .circle2 {
@@ -44,7 +44,8 @@ body {
   width: 250px;
   object-fit: cover;
   padding: 5px;
-  border: 1px solid #EEEEEE;
+  border: 2px solid #696969;
+  background-color: white;
 }
 
 .circle3 {
@@ -53,13 +54,22 @@ body {
   width: 50px;
   object-fit: cover;
   padding: 1px;
-  border: 1px solid #EEEEEE;
+  border: 1px solid #a9a9a9;
 }
 
 .circle4 {
   border-radius: 50%;
   height: 70px;
   width: 70px;
+  object-fit: cover;
+  padding: 1px;
+  border: 1px solid #EEEEEE;
+}
+
+.circle4 {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
   object-fit: cover;
   padding: 2px;
   border: 1px solid #EEEEEE;
@@ -99,3 +109,40 @@ body {
 .about{
   filter: blur(5px);
 }
+
+.pagination {
+  justify-content: center;
+}
+
+.page-item.active .page-link {
+  background-color: #93c9ff;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.page-item:first-child .page-link {
+  margin-left: 0;
+  border-radius: 20px;
+}
+
+.page-item:last-child .page-link {
+  border-radius: 20px;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  line-height: 1.1;
+  border: none;
+  border-radius: 20px;
+}
+
+.a {
+  text-decoration: none;
+}
+

@@ -1,40 +1,49 @@
+
+<%= render 'users/error_windows', post: @post %>
+
 <main class="bg-white shadow-sm">
   <p id="notice"></p>
-<div class='container'>
-  <div class='row'>
+  <div class='container'>
+    <div class='row'>
 
-    <%= render 'users/userinfo', user: @user %>
+      <%= render 'users/userinfo', user: @user %>
 
-    <div class='col-md-8'>
-      </br>
-      <h4>投稿の編集</h4>
-      <div class="card embed-responsive shadow-sm">
-        <% if @post.post_image.attached? %>
-          <%= link_to post_path(@post.id) do %>
-            <%= image_tag @post.post_image.variant(resize:'250x250'), class:"card-img-top"; %>
+      <div class='col-md-8'>
+        </br>
+        <h5>
+          <i class="fas fa-pencil-alt"></i>
+          <strong>投稿の編集</strong>
+        </h5>
+        <strong>
+          <div class="card embed-responsive shadow-sm">
+            <% if @post.post_image.attached? %>
+              <%= link_to post_path(@post.id) do %>
+                <%= image_tag @post.post_image.variant(resize:'250x250'), class:"card-img-top"; %>
+              <% end %>
+            <% else %>
+              <%= image_tag('no_image.jpg', size:'250x250') %>
+            <% end %>
+          </div>
+          <%= form_with model:@post, local:true do |f| %>
+            <div class="form-group"></br>
+              <label for="post_title">タイトル
+                <span class="text-black-50">（10文字以内）</span>
+              </label></br>
+              <%= f.text_field :title, autofocus: true, class:"form-control col-5 shadow-sm" %>
+            </div>
+            <div class="form-group">
+              <label for="post_body">内容
+                <span class="text-black-50">（1000文字以内）</span>
+              </label></br>
+              <%= f.text_area :body, autofocus: true, class:"form-control col-8 shadow-sm" %>
+            </div>
+            <div class="form-group">
+              <%= f.submit "保存する", class:"btn btn-outline-info" %>
+            </div>
           <% end %>
-        <% else %>
-          <%= image_tag('no_image.jpg', size:'250x250') %>
-        <% end %>
+        </strong>
       </div>
-        <%= form_with model:@post, local:true do |f| %>
-          <div class="form-group">
-            <label for="title">Title</label></br>
-            <%= f.text_field :title, autofocus: true, class:"form-control col-5 name" %>
-          </div>
-
-          <div class="form-group">
-            <label for="user_introduction">Introduction</label></br>
-            <%= f.text_area :body, autofocus: true, class:"form-control col-8 introduction" %>
-          </div>
-
-          <div class="form-group">
-            <%= f.submit "保存する", class:"btn btn-outline-info" %>
-          </div>
-        <% end %>
 
     </div>
-
   </div>
-</div>
 </main>

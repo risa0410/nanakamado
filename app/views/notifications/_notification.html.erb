@@ -19,6 +19,9 @@
         <% when 'comment' then %>
           <% if notification.post.user_id == visited.id %>
             <%= link_to "あなたの投稿にコメントしました", notification.post, style: "font-weight: bold;" %>
+          <% else %>
+             <%= link_to "#{notification.post.user.name} さんの投稿", post_path(notification.post), style: "font-weight: bold;" %>
+             にコメントしました
           <% end %>
       <% end %>
     <% end %>

@@ -10,15 +10,16 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.save
       redirect_to post_path(@post)
-      flash[:notice] = "You have created book successfully."
+      flash[:notice] = "投稿が完了しました。"
     else
-      render new_post_path
+      @user = current_user
+      render :new
     end
   end
 
   def index
     @user = current_user
-    @post = Post.all.page(params[:page]).reverse_order
+    @post = Post.page(params[:page]).reverse_order
   end
 
   def show
@@ -37,9 +38,10 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    @user = @post.user
     if @post.update(post_params)
       redirect_to post_path(@post)
-      # flash[:notice] = "You have updated book successfully."
+      flash[:notice] = "投稿を更新しました。"
     else
       render :edit
     end
@@ -49,19 +51,21 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to user_path(current_user)
+    flash[:notice] = "投稿を削除しました。"
   end
 
   def hashtag
     @user = current_user
     @tag = Hashtag.find_by(hashname: params[:name])
     @posts = @tag.posts
+    @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
 
   def search
     @user = current_user
     @post = Post.search(params[:keyword])
     @keyword = params[:keyword]
-    render :index
+    @post = Kaminari.paginate_array(@post).page(params[:page])
   end
 
   private

@@ -1,3 +1,6 @@
+
+<%= render 'users/flash_notice' %>
+
 <main class="bg-white shadow-sm">
   <p id="notice"></p>
   <div class='container'>
@@ -5,51 +8,48 @@
 
       <%= render 'users/userinfo', user: @user %>
 
-        <div class="card-deck-container col-md-9">
-          </br>
-          <div class="card col-11 mx-1 embed-responsive shadow-sm">
-              <% if @post.post_image.attached? %>
-                <%= image_tag @post.post_image, class:"card-img-top"; %>
-              <% else %>
-                <%= image_tag('no_image.jpg') %>
-              <% end %>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-2" style="text-align:center;">
+      <div class="card-deck-container col-md-9">
+        </br>
+        <div class="card col-11 mx-1 embed-responsive shadow-sm">
+            <% if @post.post_image.attached? %>
+              <%= image_tag @post.post_image, class:"card-img-top"; %>
+            <% else %>
+              <%= image_tag('no_image.jpg') %>
+            <% end %>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-2" style="text-align:center;">
+                <%= link_to user_path(@user.id) do %>
                   <% if @user.profile_image.attached? %>
-                    <%= image_tag @user.profile_image.variant(resize:'50x40'), class:"mt-3 rounded-circle"; %>
+                    <%= image_tag @user.profile_image.variant(resize:'50x50'), class:"circle3"; %>
                   <% else %>
-                    <%= image_tag('no_image.jpg', size:'50x40') %>
+                    <%= image_tag('no_image.jpg', size:'50x50', class:"circle3") %>
                   <% end %>
-                  <%= @user.name %>
-                </div>
-
-                <div class="col-10">
-                  <p class="card-title">
-                    <strong><i class="far fa-flag"></i><span> <%= @post.title %>  　</span></strong>
-                    <%= @post.created_at.strftime('%Y/%m/%d') %>
-                  </p>
-                  <p class="card-text"><%= simple_format(render_with_hashtags(@post.body)) %></p>
-                  <span id="favorite_<%= @post.id %>">
-                    <%= render 'favorites/favorite', post: @post %>
-                  </span>
-
-                  <span id="comment_count">　　<%= @post.post_comments.count %>件のコメント</span>
-                </div>
+                <% end %>
+                <%= @user.name %>
+              </div>
+              <div class="col-10">
+                <p class="card-title">
+                  <strong><i class="far fa-flag"></i><span> <%= @post.title %>  　</span></strong>
+                  <%= @post.created_at.strftime('%Y/%m/%d') %>
+                </p>
+                <p class="card-text"><%= simple_format(render_with_hashtags(@post.body)) %></p>
+                <span id="favorite_<%= @post.id %>">
+                  <%= render 'favorites/favorite', post: @post %>
+                </span>
+                <span id="comment_count">　　<%= @post.post_comments.count %>件のコメント</span>
               </div>
             </div>
           </div>
-          <div id="comments_area_<%= @post.id %>">
-　          <%= render 'post_comments/comment_index', post: @post %>
-　        </div>
-　        <% if user_signed_in? %>
-　          <%= render 'post_comments/comment_form', post: @post, post_comment: @post_comment %>
-          <% end %>
-
-
         </div>
-
+        <div id="comments_area_<%= @post.id %>">
+　         <%= render 'post_comments/comment_index', post: @post %>
+　       </div>
+　       <% if user_signed_in? %>
+　         <%= render 'post_comments/comment_form', post: @post, post_comment: @post_comment %>
+        <% end %>
       </div>
+
     </div>
   </div>
 </main>

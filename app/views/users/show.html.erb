@@ -1,3 +1,6 @@
+
+<%= render 'users/flash_notice' %>
+
 <main class="bg-white shadow-sm">
   <p id="notice"></p>
   <div class='container'>
@@ -7,66 +10,89 @@
 
       <div class='col-md-9'>
         </br>
-        <h4></h4>
-        <div class="background">
-          <div class="col-5 offset-md-4 mb-4 embed-responsive">
+        <h5>
+          <i class="fas fa-address-card"></i>
+          <strong>ユーザー情報</strong>
+        </h5>
+        <div class="background col-md-11 pb-2">
+          </br>
+          <div class="col-6 offset-md-1 mb-2 embed-responsive">
             <% if @user.profile_image.attached? %>
               <%= image_tag @user.profile_image.variant(resize:'250x250'), class:"circle2" %>
             <% else %>
               <%= image_tag('no_image.jpg', size:'250x250', class:"circle2") %>
             <% end %>
           </div>
-          <div class="col-8 offset-md-2 mb-4  text-center">
-            <div class="col-12">
-              <strong>ユーザーネーム</strong></br>
-              <h2><%= @user.name %></h2></br>
-              <strong>自己紹介</strong></br>
-              <h6><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></h6>
-            </div></br>
-            <%= link_to "プロフィールを編集する", edit_user_path, class:"btn btn-outline-info btn-sm col-5" %></br>
+          <div class="col-8 offset-md-1">
+            <strong>ユーザーネーム</strong></br>
+            <h2><%= @user.name %></h2></br>
+            <strong>自己紹介</strong></br>
+            <h6>
+              <% if @user.introduction.present? %>
+                <%= safe_join(@user.introduction.split("\n"),tag(:br)) %>
+              <% else %>
+                登録されていません。
+              <% end %>
+            </h6>
           </div>
         </div>
-
+        <div class="col-md-11 my-3">
+          <% if @user == current_user %>
+            <%= link_to "プロフィールを編集する", edit_user_path, class:"btn btn-outline-info btn-sm col-5 float-right" %></br>
+          <% end %>
+        </div>
         <div class="card-deck-container col-md-14">
           </br>
           <h4><%= @user.name %>さんの投稿</h4>
           <div class="row">
-            <% @posts.each do |post| %>
-              <div class="card col-5 mx-3 mb-4 embed-responsive shadow-sm">
-                <% if post.post_image.attached? %>
-                  <%= link_to post_path(post.id) do %>
-                    <%= image_tag post.post_image, class:"card-img-top"; %>
+            <% if @posts.present? %>
+              <% @posts.each do |post| %>
+                <div class="card col-5 mx-3 mb-4 embed-responsive shadow-sm">
+                  <% if post.post_image.attached? %>
+                    <%= link_to post_path(post.id) do %>
+                      <%= image_tag post.post_image, class:"card-img-top"; %>
+                    <% end %>
+                  <% else %>
+                    <%= image_tag('no_image.jpg') %>
                   <% end %>
-                <% else %>
-                  <%= image_tag('no_image.jpg') %>
-                <% end %>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-2">
-                      <% if post.user.profile_image.attached? %>
-                        <%= image_tag @user.profile_image.variant(resize:'50x50'), class:"mt-3 circle3"; %>
-                      <% else %>
-                        <%= image_tag('no_image.jpg', size:'50x50', class:"circle3") %>
-                      <% end %>
-                    </div>
-                    <div class="col-9 offset-1">
-                      <p class="card-title">
-                        <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
-                        <strong><i class="far fa-flag"></i><span> <%= post.title %></span></strong>
-                      </p>
-                      <span><i class="fas fa-user"></i>  <%= post.user.name %></span></br>
-                      <span><%= post.favorites.count %> いいね ｜ </span>
-                      <span><%= post.post_comments.count %> コメント</span></br></br>
-                      <span><%= link_to "編集", edit_post_path(post), class:"btn btn-outline-info btn-sm" %>
-                      　<%= link_to "削除", post_path(post), method: :delete, class:"btn btn-outline-danger btn-sm", "data-confirm" => "本当に削除しますか？" %>
-                      </span>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-2">
+                        <% if post.user.profile_image.attached? %>
+                          <%= image_tag @user.profile_image.variant(resize:'50x50'), class:"mt-3 circle3"; %>
+                        <% else %>
+                          <%= image_tag('no_image.jpg', size:'50x50', class:"circle3") %>
+                        <% end %>
+                      </div>
+                      <div class="col-9 offset-1">
+                        <p class="card-title">
+                          <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
+                          <strong>
+                            <i class="far fa-flag"></i>
+                            <span> <%= post.title %></span>
+                          </strong>
+                        </p>
+                        <span><i class="fas fa-user"></i>  <%= post.user.name %></span></br>
+                        <span><%= post.favorites.count %> いいね ｜ </span>
+                        <span><%= post.post_comments.count %> コメント</span></br></br>
+                        <% if @user == current_user %>
+                          <span>
+                            <%= link_to "編集", edit_post_path(post), class:"btn btn-outline-info btn-sm" %>
+                          　<%= link_to "削除", post_path(post), method: :delete, class:"btn btn-outline-danger btn-sm", "data-confirm" => "本当に削除しますか？" %>
+                          </span>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>
+              <% end %>
+            <% else %>
+              <div class="card-deck-container col-md-9">
+               まだ投稿がありません。
               </div>
             <% end %>
-          <%#= paginate post_images %>
           </div>
+          <%= paginate @posts %>
         </div>
       </div>
 
