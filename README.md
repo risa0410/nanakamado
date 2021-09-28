@@ -6,7 +6,7 @@
 
 ## サイト概要
 北欧雑貨のコーディネート・おうち時間の過ごし方を投稿または閲覧することができ、投稿へのコメントやユーザーへのチャットで交流を行うことができるアプリケーションです。
-北欧好きの方はもちろん、おうち時間を楽しみたい方が利用することで、仲間を作る場になったり、生活をより豊かにするための機会になると思います。
+北欧好きの方はもちろん、おうち時間を楽しみたい方が利用することで、仲間を作る場になったり、生活をより豊かにするための機会を提供します。
 
 ### サイトテーマ
 北欧の文化・雑貨を取り入れて、おうち時間を楽しむための画像付きの投稿サイト。
@@ -25,13 +25,16 @@
 
 ### 設計書
 ER図
-  https://drive.google.com/file/d/1iPu5YisOSYGhMm8XyvVpzgRAJbdw5aZM/view?usp=sharing
+
+https://drive.google.com/file/d/1iPu5YisOSYGhMm8XyvVpzgRAJbdw5aZM/view?usp=sharing
 
 テーブル定義書
-  https://docs.google.com/spreadsheets/d/1OAubc8QRbf0P3bRm4VyWxRRZKr8h90tyJ_DzZ9hDPBA/edit?usp=sharing
+
+https://docs.google.com/spreadsheets/d/1OAubc8QRbf0P3bRm4VyWxRRZKr8h90tyJ_DzZ9hDPBA/edit?usp=sharing
 
 アプリケーション詳細設計
-  https://docs.google.com/spreadsheets/d/14uQEgOUXrPNBrKh-AwuUZerJKguI0dotRasgy_gS6To/edit?usp=sharing
+
+https://docs.google.com/spreadsheets/d/14uQEgOUXrPNBrKh-AwuUZerJKguI0dotRasgy_gS6To/edit?usp=sharing
 
 
 ### 開発環境
