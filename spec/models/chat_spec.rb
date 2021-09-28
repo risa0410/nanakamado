@@ -5,7 +5,8 @@ RSpec.describe 'Chatモデルのテスト', type: :model do
     subject { chat.valid? }
 
     let(:user) { create(:user) }
-    let!(:chat) { build(:chat, user_id: user.id) }
+    let(:room) { create(:room)}
+    let!(:chat) { build(:chat, user_id: user.id, room_id: room.id) }
 
     context 'messageカラム' do
       it '空欄でないこと' do

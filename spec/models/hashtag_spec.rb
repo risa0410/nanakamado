@@ -1,13 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe 'Chatモデルのテスト', type: :model do
+RSpec.describe 'Hashtagモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
     subject { hashtag.valid? }
 
-    let(:user) { create(:user) }
-    let!(:post) { build(:post, user_id: user.id) }
+    let!(:hashtag) { build(:hashtag) }
 
-    context 'messageカラム' do
+    context 'hashnameカラム' do
       it '空欄でないこと' do
         hashtag.hashname = ''
         is_expected.to eq false
