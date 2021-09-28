@@ -23,7 +23,7 @@
 - おうち時間を心地よく過ごしたい方
 - 北欧雑貨や暮らしを発信したい方
 
-### 設計書
+## 設計書
 ER図
 
 https://drive.google.com/file/d/1iPu5YisOSYGhMm8XyvVpzgRAJbdw5aZM/view?usp=sharing
@@ -45,14 +45,6 @@ https://docs.google.com/spreadsheets/d/14uQEgOUXrPNBrKh-AwuUZerJKguI0dotRasgy_gS
 - IDE：Cloud9
 
 ### 使用素材
-写真AC
-
-https://www.photo-ac.com/
-
-イラストAC
-
-https://www.ac-illust.com/
-
-O-DAN
-
-https://o-dan.net/ja/
+写真AC  https://www.photo-ac.com/
+イラストAC  https://www.ac-illust.com/
+O-DAN  https://o-dan.net/ja/
