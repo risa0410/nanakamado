@@ -5,7 +5,7 @@ RSpec.describe 'PostCommentモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
     subject { post_comment.valid? }
     let(:user) { create(:user) }
-    let!(:post) { build(:post, user_id: user.id) }
+    let!(:post_comment) { build(:post_comment, user_id: user.id) }
 
     context 'commentカラム' do
       it '空欄でないこと' do

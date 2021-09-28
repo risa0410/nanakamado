@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'Postモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
-    subject { book.valid? }
+    subject { post.valid? }
 
     let(:user) { create(:user) }
     let!(:post) { build(:post, user_id: user.id) }
+    let(:post) { create(:post, title:'hoge',body:'body',user_id: user.id) }
 
     context 'titleカラム' do
       it '空欄でないこと' do
@@ -74,7 +75,7 @@ RSpec.describe 'Postモデルのテスト', type: :model do
     end
     context 'Hashtagモデルとの関係' do
       it '1:Nとなっている' do
-        expect(Post.reflect_on_association(:hashtag).macro).to eq :has_many
+        expect(Post.reflect_on_association(:hashtags).macro).to eq :has_many
       end
     end
   end

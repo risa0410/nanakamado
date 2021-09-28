@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'PostHashRelationモデルのテスト', type: :model do
     describe 'バリデーションのテスト' do
-    subject { user.valid? }
+    subject { post_hashtag_relation.valid? }
 
     let!(:other_user) { create(:user) }
     let(:user) { build(:user) }
