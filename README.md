@@ -45,6 +45,14 @@ https://docs.google.com/spreadsheets/d/14uQEgOUXrPNBrKh-AwuUZerJKguI0dotRasgy_gS
 - IDE：Cloud9
 
 ### 使用素材
-- 写真AC https://www.photo-ac.com/
-- イラストAC https://www.ac-illust.com/
-- O-DAN https://o-dan.net/ja/
+写真AC
+
+https://www.photo-ac.com/
+
+イラストAC
+
+https://www.ac-illust.com/
+
+O-DAN
+
+https://o-dan.net/ja/
