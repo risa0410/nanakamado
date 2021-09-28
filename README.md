@@ -36,8 +36,12 @@ https://docs.google.com/spreadsheets/d/1OAubc8QRbf0P3bRm4VyWxRRZKr8h90tyJ_DzZ9hD
 
 https://docs.google.com/spreadsheets/d/14uQEgOUXrPNBrKh-AwuUZerJKguI0dotRasgy_gS6To/edit?usp=sharing
 
+## チャレンジ要素一覧
 
-### 開発環境
+https://docs.google.com/spreadsheets/d/1axZCjHdA7EzXSN6FtHEqPswIskUI6jIT42BWijIMNjI/edit?usp=sharing
+
+
+## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
