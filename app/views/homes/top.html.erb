@@ -5,21 +5,21 @@
   <% if user_signed_in? %>
     <div class="container mt-3 mb-3">
       <h4 class="ml-5"><strong>新着投稿 </strong><i class="fas fa-democrat"></i></h4>
-      <div class="row mt-3">
+      <div class="row mt-3 mx-auto">
         <% @posts.each do |post| %>
-          <div class="col-md-3 mx-auto">
+          <div class="card col-md-3 shadow-sm height:auto pb-2">
             <div>
               <div><strong>
                 <i class="far fa-flag"></i> <%= post.title %>
               </strong></div>
               <%= link_to post_path(post.id) do %>
-                <%= image_tag post.post_image.variant(resize:'140x140'), class: "shadow-sm rounded" %>
+                <%= image_tag post.post_image, class: "card-img-bottom rounded" %>
               <% end %>
             </div>
           </div>
         <% end %>
       </div>
-      <p class="text-right">
+      <p class="text-right mt-2">
         <strong><%= link_to "みんなの投稿を見る＞", posts_path %></strong>
       </p>
     </div>
