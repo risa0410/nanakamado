@@ -32,8 +32,8 @@ body {
 
 .circle {
   border-radius: 50%;
-  height: 120px;
-  width: 120px;
+  height: 7vw;
+  width: 7vw;
   object-fit: cover;
   padding: 2px;
   border: 1px solid #696969;
@@ -41,8 +41,8 @@ body {
 
 .circle2 {
   border-radius: 50%;
-  height: 250px;
-  width: 250px;
+  height: 10vw;
+  width: 10vw;
   object-fit: cover;
   padding: 5px;
   border: 2px solid #696969;
@@ -51,8 +51,8 @@ body {
 
 .circle3 {
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 4vw;
+  width: 4vw;
   object-fit: cover;
   padding: 1px;
   border: 1px solid #a9a9a9;
@@ -67,12 +67,12 @@ body {
   border: 1px solid #EEEEEE;
 }
 
-.circle4 {
+.circle5 {
   border-radius: 50%;
-  height: 40px;
-  width: 40px;
+  height: 3vw;
+  width: 3vw;
   object-fit: cover;
-  padding: 2px;
+  padding: 1px;
   border: 1px solid #EEEEEE;
 }
 
@@ -147,3 +147,11 @@ body {
   text-decoration: none;
 }
 
+.font-type {
+  font-size: 1vw;
+  font-weight: bold;
+}
+
+.font-type2 {
+  font-size: 1vw;
+}

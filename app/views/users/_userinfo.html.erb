@@ -4,9 +4,9 @@
     <tr>
       <%= link_to user_path(user.id) do %>
         <% if user.profile_image.attached? %>
-          <%= image_tag user.profile_image.variant(resize:'120x120'), class: "circle" %>
+          <%= image_tag user.profile_image, class: "circle" %>
         <% else %>
-          <%= image_tag('no_image.jpg', size:'120x120', class: "circle") %>
+          <%= image_tag('no_image.jpg', class: "circle") %>
         <% end %>
       <% end %>
     </tr>
