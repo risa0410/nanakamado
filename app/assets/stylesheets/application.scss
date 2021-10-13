@@ -18,7 +18,8 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 @import "notifications";
-@import "homes";
+@import "posts";
+
 
 body {
   background-image: url("hoge.jpg");
@@ -155,3 +156,4 @@ body {
 .font-type2 {
   font-size: 1vw;
 }
+

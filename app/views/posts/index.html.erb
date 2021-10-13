@@ -19,7 +19,7 @@
         <div class="row">
           <% if @post.present? %>
             <% @post.each do |post| %>
-              <div class="card col-5 mx-3 mb-4 embed-responsive shadow-sm">
+              <div class="card col-md-5 mx-3 mb-4 embed-responsive shadow-sm">
                 <% if post.post_image.attached? %>
                   <%= link_to post_path(post.id) do %>
                     <%= image_tag post.post_image, class:"card-img-top"; %>
