@@ -18,9 +18,9 @@
           </br>
           <div class="col-6 offset-md-1 mb-2 embed-responsive">
             <% if @user.profile_image.attached? %>
-              <%= image_tag @user.profile_image.variant(resize:'250x250'), class:"circle2" %>
+              <%= image_tag @user.profile_image, class:"circle2" %>
             <% else %>
-              <%= image_tag('no_image.jpg', size:'250x250', class:"circle2") %>
+              <%= image_tag('no_image.jpg', class:"circle2") %>
             <% end %>
           </div>
           <div class="col-8 offset-md-1">
@@ -38,7 +38,7 @@
         </div>
         <div class="col-md-11 my-3">
           <% if @user == current_user %>
-            <%= link_to "プロフィールを編集する", edit_user_path, class:"btn btn-outline-info btn-sm col-5 float-right" %></br>
+            <%= link_to "プロフィールを編集する", edit_user_path, class:"btn btn-outline-info btn-sm col-md-7 float-right" %></br>
           <% end %>
         </div>
         <div class="card-deck-container col-md-14">
@@ -57,14 +57,14 @@
                   <% end %>
                   <div class="card-body">
                     <div class="row">
-                      <div class="col-2">
+                      <div class="col-md-2">
                         <% if post.user.profile_image.attached? %>
-                          <%= image_tag @user.profile_image.variant(resize:'50x50'), class:"mt-3 circle3"; %>
+                          <%= image_tag @user.profile_image, class:"mt-3 circle3"; %>
                         <% else %>
-                          <%= image_tag('no_image.jpg', size:'50x50', class:"circle3") %>
+                          <%= image_tag('no_image.jpg', class:"mt-3 circle3") %>
                         <% end %>
                       </div>
-                      <div class="col-9 offset-1">
+                      <div class="col-md-9 offset-md-1 col-xl-7 offset-xl-3">
                         <p class="card-title">
                           <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
                           <strong>
