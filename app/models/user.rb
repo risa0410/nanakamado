@@ -8,13 +8,10 @@ class User < ApplicationRecord
   has_many :user_rooms
   has_many :chats
 
-  # フォローされる側から中間テーブルへのアソシエーションの記述
+  # follower_id:フォローするユーザーのid, followed_id:フォローされるユーザーのid
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  # フォローされる側からフォローしているユーザを取得する
   has_many :followers, through: :reverse_of_relationships, source: :follower
-  # フォローする側から中間テーブルへのアソシエーションの記述
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  # フォローする側からフォローされたユーザを取得する
   has_many :followings, through: :relationships, source: :followed
 
   # active_notificationsは自分からの通知
