@@ -28,6 +28,7 @@ class User < ApplicationRecord
   validate :profile_image_type
 
 
+  # フォロー・フォロワー
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
@@ -41,6 +42,7 @@ class User < ApplicationRecord
   end
 
 
+  # 通知機能 フォローされているかどうか
   def create_notification_follow!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
     if temp.blank?

@@ -12,16 +12,40 @@ class Post < ApplicationRecord
   validate :post_image_type
 
 
+  # ハッシュタグ
+  after_create do
+    post = Post.find_by(id: self.id)
+    hashtags  = self.body.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    post.hashtags = []
+    hashtags.uniq.map do |hashtag|
+      tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
+      post.hashtags << tag
+    end
+  end
+  before_update do
+    post = Post.find_by(id: self.id)
+    post.hashtags.clear
+    hashtags = self.body.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    hashtags.uniq.map do |hashtag|
+      tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
+      post.hashtags << tag
+    end
+  end
+
+
+  # いいね
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
 
+
+  # 検索
   def self.search(keyword)
     where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
   end
 
 
-  # いいねがされているかどうか
+  # 通知機能 いいねがされているかどうか
   def create_notification_favorite!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
     if temp.blank?
@@ -38,7 +62,7 @@ class Post < ApplicationRecord
   end
 
 
-  # コメントがされているかどうか
+  # 通知機能 コメントがされているかどうか
   def create_notification_comment!(current_user, post_comment_id)
     temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
     temp_ids.each do |temp_id|
@@ -58,27 +82,6 @@ class Post < ApplicationRecord
       notification.checked = true
     end
     notification.save if notification.valid?
-  end
-
-
-  after_create do
-    post = Post.find_by(id: self.id)
-    hashtags  = self.body.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
-    post.hashtags = []
-    hashtags.uniq.map do |hashtag|
-      #ハッシュタグは先頭の'#'を外した上で保存
-      tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
-      post.hashtags << tag
-    end
-  end
-  before_update do
-    post = Post.find_by(id: self.id)
-    post.hashtags.clear
-    hashtags = self.body.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
-    hashtags.uniq.map do |hashtag|
-      tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
-      post.hashtags << tag
-    end
   end
 
 
