@@ -39,21 +39,24 @@ class Post < ApplicationRecord
   end
 
 
-  # 検索
+  # 検索機能
   def self.search(keyword)
     where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
   end
 
 
-  # 通知機能 いいねがされているかどうか
+  # 通知機能 いいね
   def create_notification_favorite!(current_user)
+    # 既に「いいね」されているかを検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
+    # いいねがされていなかったら、通知レコードを作成
     if temp.blank?
       notification = current_user.active_notifications.new(
         post_id: id,
         visited_id: user_id,
         action: 'favorite'
       )
+      # 自分で自分の投稿にいいねした場合は、通知済みにする
       if notification.visitor_id == notification.visited_id
         notification.checked = true
       end
@@ -62,22 +65,26 @@ class Post < ApplicationRecord
   end
 
 
-  # 通知機能 コメントがされているかどうか
+  # 通知機能 コメント
   def create_notification_comment!(current_user, post_comment_id)
+    # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     temp_ids = PostComment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
     temp_ids.each do |temp_id|
       save_notification_comment!(current_user, post_comment_id, temp_id['user_id'])
     end
+    # まだ誰もコメントをしていない場合は、投稿者に通知を送る
     save_notification_comment!(current_user, post_comment_id, user_id) if temp_ids.blank?
   end
 
   def save_notification_comment!(current_user, post_comment_id, visited_id)
+    # １つの投稿に複数回の通知ができる状態
     notification = current_user.active_notifications.new(
       post_id: id,
       post_comment_id: post_comment_id,
       visited_id: visited_id,
       action: 'comment'
     )
+    # 自分で自分の投稿にコメントした場合は、通知済みにする
     if notification.visitor_id == notification.visited_id
       notification.checked = true
     end

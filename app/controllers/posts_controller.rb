@@ -61,7 +61,7 @@ class PostsController < ApplicationController
     @posts = Kaminari.paginate_array(@posts).page(params[:page])
   end
 
-  def search
+  def search # 投稿のキーワード
     @user = current_user
     @post = Post.search(params[:keyword])
     @keyword = params[:keyword]

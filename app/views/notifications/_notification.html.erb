@@ -1,3 +1,5 @@
+
+<!--visitor : 通知を送ったユーザー  visited : 通知を送られたユーザー-->
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
 
@@ -18,7 +20,7 @@
             <% if notification.post.user_id == visited.id %>
               <%= link_to "あなたの投稿にコメントしました", notification.post %>
             <% else %>
-               <%= link_to "#{notification.post.user.name} さんの投稿にコメントしました", post_path(notification.post) %>
+              <%= link_to "#{notification.post.user.name} さんの投稿にコメントしました", post_path(notification.post) %>
             <% end %>
         <% end %>
       <% end %>
