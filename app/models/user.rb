@@ -8,15 +8,13 @@ class User < ApplicationRecord
   has_many :user_rooms
   has_many :chats
 
-  # フォローされる側から中間テーブルへのアソシエーションの記述
+  # follower_id:フォローするユーザーのid, followed_id:フォローされるユーザーのid
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  # フォローされる側からフォローしているユーザを取得する
   has_many :followers, through: :reverse_of_relationships, source: :follower
-  # フォローする側から中間テーブルへのアソシエーションの記述
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  # フォローする側からフォローされたユーザを取得する
   has_many :followings, through: :relationships, source: :followed
 
+  # visitor_id : 通知を送ったユーザーのid  visited_id : 通知を送られたユーザーのid
   # active_notificationsは自分からの通知
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   # passive_notificationsは相手からの通知
@@ -28,6 +26,7 @@ class User < ApplicationRecord
   validate :profile_image_type
 
 
+  # フォロー・フォロワー
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
@@ -41,8 +40,11 @@ class User < ApplicationRecord
   end
 
 
+  # 通知機能 フォロー
   def create_notification_follow!(current_user)
+    # 既に「フォロー」されているかを検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    # フォローがされていなかったら、通知レコードを作成
     if temp.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,
