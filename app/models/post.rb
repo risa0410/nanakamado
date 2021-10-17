@@ -14,14 +14,18 @@ class Post < ApplicationRecord
 
   # ハッシュタグ
   after_create do
+    # 作成した投稿を探す
     post = Post.find_by(id: self.id)
+    # 投稿のbodyに入力されたハッシュタグを探す
     hashtags  = self.body.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     post.hashtags = []
     hashtags.uniq.map do |hashtag|
+      # ハッシュタグが既にあるかどうか調べてから先頭の#を外した状態で保存をする
       tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
       post.hashtags << tag
     end
   end
+  # 更新
   before_update do
     post = Post.find_by(id: self.id)
     post.hashtags.clear
