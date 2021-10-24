@@ -1,13 +1,9 @@
-
 <%= render 'users/error_windows', post: @post %>
-
 <main class="bg-white shadow-sm">
   <p id="notice"></p>
   <div class='container'>
     <div class='row'>
-
-      <%= render 'users/userinfo', user: @user %>
-
+      <%= render 'users/userinfo', user: @post.user %>
       <div class='col-md-8'>
         </br>
         <h5>
@@ -43,7 +39,6 @@
           <% end %>
         </strong>
       </div>
-
     </div>
   </div>
 </main>
