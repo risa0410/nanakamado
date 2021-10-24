@@ -1,13 +1,9 @@
-
 <%= render 'users/flash_notice' %>
-
 <main class="bg-white shadow-sm">
   <p id="notice"></p>
   <div class='container'>
     <div class='row'>
-
-      <%= render 'users/userinfo', user: @user %>
-
+      <%= render 'users/userinfo', user: @post.user %>
       <div class="card-deck-container col-md-9">
         </br>
         <div class="card col-11 mx-1 embed-responsive shadow-sm">
@@ -19,14 +15,14 @@
           <div class="card-body">
             <div class="row">
               <div class="col-2" style="text-align:center;">
-                <%= link_to user_path(@user.id) do %>
-                  <% if @user.profile_image.attached? %>
-                    <%= image_tag @user.profile_image.variant(resize:'50x50'), class:"circle3"; %>
+                <%= link_to user_path(@post.user.id) do %>
+                  <% if @post.user.profile_image.attached? %>
+                    <%= image_tag @post.user.profile_image.variant(resize:'50x50'), class:"circle3"; %>
                   <% else %>
                     <%= image_tag('no_image.jpg', size:'50x50', class:"circle3") %>
                   <% end %>
                 <% end %>
-                <%= @user.name %>
+                <%= @post.user.name %>
               </div>
               <div class="col-10">
                 <p class="card-title">
@@ -44,12 +40,11 @@
         </div>
         <div id="comments_area_<%= @post.id %>">
 　         <%= render 'post_comments/comment_index', post: @post %>
-　       </div>
-　       <% if user_signed_in? %>
-　         <%= render 'post_comments/comment_form', post: @post, post_comment: @post_comment %>
-        <% end %>
+　      </div>
+　        <% if user_signed_in? %>
+　          <%= render 'post_comments/comment_form', post: @post, post_comment: @post_comment %>
+          <% end %>
       </div>
-
     </div>
   </div>
 </main>

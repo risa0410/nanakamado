@@ -1,13 +1,9 @@
-
 <%= render 'users/flash_notice' %>
-
 <main class="bg-white shadow-sm">
   <p id="notice"></p>
   <div class='container'>
     <div class='row'>
-
       <%= render 'users/userinfo', user: @user %>
-
       <div class='col-md-9'>
         </br>
         <h5>
@@ -95,7 +91,6 @@
           <%= paginate @posts %>
         </div>
       </div>
-
     </div>
   </div>
 </main>

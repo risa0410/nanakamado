@@ -2,21 +2,16 @@
   <p id="notice"></p>
   <div class='container'>
     <div class='row'>
-
       <%= render 'users/userinfo', user: current_user %>
-
       <div class="card-deck-container col-md-9">
         </br>
         <h5>
           <i class="fas fa-heart"></i>
           <strong>お気に入り一覧</strong>
         </h5>
-
-        <%= render 'posts/posts_index', post: @favorite_list %>
-
-        <%= paginate @favorite_list %>
+        <%= render 'posts/posts_index', post: @favorite_lists %>
+        <%= paginate @favorite_lists %>
       </div>
-
   </div>
 </main>
 

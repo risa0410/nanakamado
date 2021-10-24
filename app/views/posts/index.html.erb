@@ -2,25 +2,21 @@
   <p id="notice"></p>
   <div class='container'>
     <div class='row'>
-
-      <%= render 'users/userinfo', user: @user %>
-
+      <%= render 'users/userinfo', user: current_user %>
       <div class="card-deck-container col-md-9 mb-3">
         <div class="search-form col-md-11" style="text-align: right">
-           <%= form_with url: search_path, method: :get, local: true do |f| %>
-             <%= f.text_field :keyword, class:"col-4", placeholder:"キーワード", value: @keyword %>
-             <%= f.submit "検索", class:"btn btn-light btn-sm mb-1 shadow-sm" %>
-           <% end %>
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
+            <%= f.text_field :keyword, class:"col-4", placeholder:"キーワード", value: @keyword %>
+            <%= f.submit "検索", class:"btn btn-light btn-sm mb-1 shadow-sm" %>
+          <% end %>
         </div>
         <h5>
           <i class="fas fa-book-open"></i>
           <strong>みんなの投稿一覧</strong>
         </h5>
-
-        <%= render 'posts/posts_index', post: @post %>
-
-        <%= paginate @post %>
+        <%= render 'posts/posts_index', post: @posts %>
+        <%= paginate @posts %>
       </div>
-
+    </div>
   </div>
 </main>

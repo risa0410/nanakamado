@@ -2,15 +2,13 @@
   <p id="notice"></p>
   <div class='container'>
     <div class='row'>
-
-      <%= render 'users/userinfo', user: @user %>
-
+      <%= render 'users/userinfo', user: current_user %>
       <div class="card-deck-container col-md-9">
         </br>
         <h4>検索結果：<%= @keyword %></h4>
         <div class="row">
-          <% if @post.present? %>
-            <% @post.each do |post| %>
+          <% if @posts.present? %>
+            <% @posts.each do |post| %>
               <div class="card col-5 mx-3 mb-4 embed-responsive shadow-sm">
                 <% if post.post_image.attached? %>
                   <%= link_to post_path(post.id) do %>
@@ -46,8 +44,8 @@
             </div>
           <% end %>
         </div>
-        <%= paginate @post %>
+        <%= paginate @posts %>
       </div>
-
+    </div>
   </div>
 </main>

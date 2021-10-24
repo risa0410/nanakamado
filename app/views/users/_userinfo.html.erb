@@ -20,7 +20,7 @@
   <div>
     <strong>
   	  <span id="follow_">
-  	    <%= render 'relationships/follow' %>
+  	    <%= render 'relationships/follow', user: user %>
   	  </span></br>
       <%= link_to user_followings_path(user.id) do %>
         <span id="follow_count"><%= user.followings.count %> フォロー</span>
