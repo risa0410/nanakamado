@@ -41,9 +41,9 @@
         <div id="comments_area_<%= @post.id %>">
 　         <%= render 'post_comments/comment_index', post: @post %>
 　      </div>
-　        <% if user_signed_in? %>
-　          <%= render 'post_comments/comment_form', post: @post, post_comment: @post_comment %>
-          <% end %>
+　      <% if user_signed_in? %>
+　        <%= render 'post_comments/comment_form', post: @post, post_comment: @post_comment %>
+        <% end %>
       </div>
     </div>
   </div>
