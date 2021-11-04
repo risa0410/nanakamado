@@ -12,6 +12,7 @@
         fileReader.onload = (function (e) {
             var img = new Image();
             img.src = e.target.result;
+            img.classList.add('postprv')
             document.getElementById('preview').appendChild(img);
         });
       fileReader.readAsDataURL(obj.files[i]);
