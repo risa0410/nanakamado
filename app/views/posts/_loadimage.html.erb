@@ -1,11 +1,17 @@
 <script>
   function loadImage(obj)
   {
+    // 選択した画像を読み込む
     var allPreview = document.getElementById('post_image');
+    // <p>を作成する
     var newPreview = document.createElement("p");
+    // post_imageの中の<p>を取り除く
     allPreview.querySelector("p").remove();
+    // <p>を<p id="preview"></p>に設定
     newPreview.setAttribute("id","preview");
+    // <p id="preview"></p>を<div id="post_image">の中の最初の要素として設定
     allPreview.insertBefore(newPreview, allPreview.firstChild);
+    // viewの方でnone(非表示)にしている部分を表示に変更
     document.getElementById("post_image").style.display = "";
     for (i = 0; i < obj.files.length; i++) {
         var fileReader = new FileReader();

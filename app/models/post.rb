@@ -13,6 +13,7 @@ class Post < ApplicationRecord
 
 
   # ハッシュタグ
+  #
   after_create do
     # 作成した投稿を探す
     post = Post.find_by(id: self.id)
