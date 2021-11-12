@@ -14,8 +14,10 @@
                 <%= f.label :post_image, "画像" %><span class="must"></span>
               <span class="text-black-50">（必須）</span>
               </div>
+              <!--javascriptとの関連付けを行う記述-->
               <%= f.file_field :post_image, class: "push", onchange: "loadImage(this);" %>
             </div></br>
+              <!--選択した画像をプレビュー表示する記述-->
             <div id="post_image" style="display: none;">
               <p id="preview"></p>
             </div>
