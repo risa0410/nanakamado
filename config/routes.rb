@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'inquiry/index'
+  get 'inquiry/confirm'
+  get 'inquiry/thanks'
   devise_for :users
   root to: 'homes#top'
   get "/home/about" => "homes#about"
