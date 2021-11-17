@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'inquiry/index'
-  get 'inquiry/confirm'
-  get 'inquiry/thanks'
   devise_for :users
   root to: 'homes#top'
   get "/home/about" => "homes#about"
+  root to: 'inquiry#index'
+  get 'inquiry/index'
+  get 'inquiry/confirm'
+  get 'inquiry/thanks'
 
   resources :users, only: [:show, :edit, :update, :index] do
     get 'users/favorite' => 'users#favorite'
