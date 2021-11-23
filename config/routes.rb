@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get "/home/about" => "homes#about"
   root to: 'inquiry#index'
   get 'inquiry/index'
-  get 'inquiry/confirm'
-  get 'inquiry/thanks'
+  post 'inquiry/confirm'
+  post 'inquiry/thanks'
 
   resources :users, only: [:show, :edit, :update, :index] do
     get 'users/favorite' => 'users#favorite'
