@@ -1,6 +1,25 @@
-<div class="page-header">
-  <h1>お問い合わせ</h1>
-</div>
-<p>
-  お問い合わせいただきありがとうございました。
-</p>
+<main class="bg-white shadow-sm">
+  <p id="notice"></p>
+  <div class='container'>
+    <div class='row'>
+      <%= render 'users/userinfo', user: current_user %>
+      <div class='col-md-9 mb-3'>
+        </br>
+        <strong>
+          <h4></h4>
+          <div class="page-header">
+            <h5>
+              <i class="fas fa-question-circle"></i>
+              <strong>お問い合わせ</strong>
+            </h5>
+            <p>
+              お問い合わせいただきありがとうございました。
+            </p>
+          </div>
+        </strong>
+      </div>
+    </div>
+  </div>
+</main>
+
+
