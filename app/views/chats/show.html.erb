@@ -5,7 +5,7 @@
       <%= render 'users/userinfo', user: @user %>
       <div class='col-md-9 pb-3'>
         </br>
-        <h4><%= @user.name %>さんとのチャット</h4>
+        <h5><%= @user.name %><strong>さんとのチャット</strong></h5>
         <div>
           <%= render 'chats/chat_form', chat: @chat %>
         </div>
