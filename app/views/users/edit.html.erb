@@ -6,12 +6,14 @@
       <%= render 'users/userinfo', user: @user %>
       <div class='col-md-9'>
         </br>
-        <h5>
-          <i class="fas fa-pencil-alt"></i>
-          <strong>プロフィール編集</strong>
-        </h5></br>
         <strong>
-          <%= form_with model:@user, local:true do |f| %>
+          <%= form_with model: @user, local: true do |f| %>
+            <div class="page-header">
+              <h5>
+                <i class="fas fa-pencil-alt"></i>
+                <strong>プロフィール編集</strong>
+              </h5>
+            </div></br>
             <div class="form-group">
               <label for="user_name">名前
                 <span class="text-black-50">（10文字以内）</span>
@@ -19,9 +21,17 @@
               <%= f.text_field :name, autofocus: true, class:"form-control col-5 shadow-sm" %>
             </div></br>
             <div class="form-group">
-              <label for="user_image">画像</label></br>
-              <%= f.file_field :profile_image %>
+              <div class="field">
+                <%= f.label :profile_image, "画像" %><span class="must"></span>
+              <span class="text-black-50">（必須）</span>
+              </div>
+              <!--javascriptとの関連付けを行う記述-->
+              <%= f.file_field :profile_image, class: "push", onchange: "loadImage(this);" %>
             </div></br>
+              <!--選択した画像をプレビュー表示する記述-->
+            <div id="post_image" style="display: none;">
+              <p id="preview"></p>
+            </div>
             <div class="form-group">
               <label for="user_introduction">自己紹介
                 <span class="text-black-50">（50文字以内）</span>
@@ -50,6 +60,7 @@
                 <p><%= @user.introduction %></p>
               </div>
           </div>
+          <%= render "loadimage" %>
         </strong>
       </div>
     </div>
