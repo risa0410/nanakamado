@@ -41,25 +41,21 @@
             <div class="form-group">
               <%= f.submit "保存する", class:"btn btn-outline-info" %>
             </div>
-          <% end %></br></br>
+          <% end %></br></br></br>
           <h5>
-            <strong>現在のプロフィール</strong>
+            <strong>現在のプロフィール</strong></br></br>
           </h5>
-          <div class="col-5 mt-4 mb-4 text-center">
-              <% if @user.profile_image.attached? %>
-                <%= image_tag @user.profile_image.variant(resize:'250x250'), class:"circle2" %>
-              <% else %>
-                <%= image_tag('no_image.jpg', size:'250x250', class:"circle2") %>
-              <% end %>
-          </div>
-          <div class="col-7 mb-4">
-              <div class="col-10">
-                </br><p>名前</p>
-                <p><%= @user.name %></p></br>
-                <p>自己紹介</p>
-                <p><%= @user.introduction %></p>
-              </div>
-          </div>
+
+            <% if @user.profile_image.attached? %>
+              <%= image_tag @user.profile_image.variant(resize:'250x250'), class:"circle2" %>
+            <% else %>
+              <%= image_tag('no_image.jpg', size:'250x250', class:"circle2") %>
+            <% end %>
+            </br></br><p>名前</p>
+            <p><%= @user.name %></p></br>
+            <p>自己紹介</p>
+            <p><%= @user.introduction %></p>
+
           <%= render "loadimage" %>
         </strong>
       </div>
