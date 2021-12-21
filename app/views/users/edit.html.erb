@@ -4,7 +4,7 @@
   <div class='container'>
     <div class='row'>
       <%= render 'users/userinfo', user: @user %>
-      <div class='col-md-9'>
+      <div class='col-md-9 pb-4'>
         </br>
         <strong>
           <%= form_with model: @user, local: true do |f| %>
@@ -45,7 +45,6 @@
           <h5>
             <strong>現在のプロフィール</strong></br></br>
           </h5>
-
             <% if @user.profile_image.attached? %>
               <%= image_tag @user.profile_image.variant(resize:'250x250'), class:"circle2" %>
             <% else %>
@@ -55,7 +54,6 @@
             <p><%= @user.name %></p></br>
             <p>自己紹介</p>
             <p><%= @user.introduction %></p>
-
           <%= render "loadimage" %>
         </strong>
       </div>
